@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <link rel="stylesheet" href="/userHome.css">
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{user.name}}</li>
+            <li><a href="/goHomeUser">Home</a></li>
+            <li><a href="/dailyReport">Daily Report Tab</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <div class="controlPanel">
+        <h1>Welcome to Stack Inventory - User Side</h1>
+
+        <label for="items">Select an item to out:</label>
+        <ul name="items" id="items" class="items">
+            <div class="item-container" >
+                {{#each itemCollection}}
+                <li value="{{this.product}}" class="item" data-product="{{this.product}}">
+                    <img class="productImage" src="{{this.picture}}" alt="{{this.product}}">
+                    <span class="itemName">{{this.product}}</span>
+                    <span class="itemQuantity">{{this.quantity}}/{{this.maxQuantity}}</span>
+                    <button type="button" id="subtractQuantity" class="subtract-quantity" data-product="{{this.product}}">&minus;</button> <!--&minus; is as HTML entity for 'minus sign'-->
+                </li>
+                {{/each}}
+            </div>
+        </ul>
+    </div>
+
+
+    <script>
+        // Function to fetch and display near-depletion items
+        async function fetchNearDepletionItems() {
+            try {
+                const response = await fetch('/getNearDepletionItems');
+                const nearDepletionItems = await response.json();
+            } catch (error) {
+                console.error(`Error fetching near-depletion items: ${error}`);
+            }
+        }
+
+        // Call the fetch NearDepletionItems function when the page loads
+        document.addEventListener("DOMContentLoaded", fetchNearDepletionItems);
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+        let currentQuantity;
+        const itemsContainer = document.querySelector('.item-container');
+
+        // Add event listener to the "subtract quantity" buttons for each item.
+        itemsContainer.addEventListener('click', async (event) => {
+            const target = event.target;
+            console.log(target);
+
+            // Check if the clicked element is a button with the class 'subtract-quantity'
+            if (target.classList.contains('subtract-quantity')) {
+                const selectedProduct = target.getAttribute('data-product');
+
+                 // Ensure a product is selected
+                if (!selectedProduct) {
+                    console.error("No product selected");
+                    return;
+                }
+
+                try {
+                    // Decrement the quantity by 1 in the database.
+                    const response = await fetch(`/userHome/getQuantity?product=${selectedProduct}`);
+                    const data = await response.json();
+
+                    // Update the quantity display with the current quantity.
+                    currentQuantity = data.quantity;
+                    const quantityDisplay = target.parentElement.querySelector('.itemQuantity');
+                    quantityDisplay.textContent = `${currentQuantity}/${data.maxQuantity}`;
+
+                    // Decrement the quantity by 1 in the database.
+                    const addResponse = await fetch(`/userHome/subtractQuantity?product=${selectedProduct}`);
+                    const addData = await addResponse.json();
+                    
+
+                    if (addData.success) {
+                        // Update the quantity display with the new quantity.
+                        currentQuantity--;
+                        quantityDisplay.textContent = `${currentQuantity}/${addData.maxQuantity}`;
+                        console.log(`Quantity for ${selectedProduct} subtracted successfully`);
+                    } else {
+                        quantityDisplay.textContent = `${currentQuantity}/${addData.maxQuantity}`;
+                        console.error(`Failed to subtract quantity: ${addData.message}`);
+                    }
+                } catch (error) {
+                    console.error(`Error reducing quantity: ${error}`);
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Need to Buy</title>
+    <link rel="stylesheet" href="/needToBuy.css">
+    <!--link rel="stylesheet" href="print-styles.css" media="print"-->
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{admin.name}}</li>
+            <li><a href="/goHomeAdmin">Home</a></li>
+            <li><a href="/status">Status</a></li>
+            <li><a href="/report">Reports</a></li>
+            <li><a href="/needToBuy">Need to Buy</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <h1> Need to Buy</h1>
+        <br>
+        <button onclick="window.print()">Print Report</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity Needed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each reportData}}
+                    <tr>
+                        <td>{{this.product}}</td>
+                        <td>{{this.difference}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

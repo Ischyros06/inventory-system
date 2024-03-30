@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/adminSignup.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up as Admin</h2>
+        <img src="admin acc.png" alt="Admin" class="role-image">
+        <form>
+            <label for="name">Username</label>
+            <input type="text" id="name" name="name" required>
+            <div class="errorName"></div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="errorPass"></div>
+            <button>Signup</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const errorName = document.querySelector('.errorName');
+        const errorPass = document.querySelector('.errorPass');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+
+            errorName.textContent = ''; // Clear username error
+            errorPass.textContent = ''; // Clear password error
+
+            // get the values
+            const name = form.name.value;
+            const password = form.password.value;
+            
+            try {
+                const res = await fetch('/adminSignup', {
+                    method: 'POST',     
+                    body: JSON.stringify({ name, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await res.json();
+                // Check for errors in the response
+                if (res.status === 400) {
+                    if (data.error === 'This username is already registered') {
+                        errorName.textContent = data.error;
+                    } else {
+                        errorPass.textContent = data.error;
+                    }
+                } else {
+                    // Handle successful signup, redirect, etc.
+                    console.log(data);
+                    location.assign('/');
+                }
+            } catch (error){
+                console.log(error);
+            }
+        });
+    </script>
+</body>
+</html>

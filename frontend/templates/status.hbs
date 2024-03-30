@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/status.css">
+    <title>Status</title>
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{admin.name}}</li>
+            <li><a href="/goHomeAdmin">Home</a></li>
+            <li><a href="/status">Status</a></li>
+            <li><a href="/report">Reports</a></li>
+            <li><a href="/needToBuy">Need to Buy</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+    
+    <main>
+        <h1>Item Data Table</h1>
+        <button onclick="window.location.href='/status/createItem'">Create</button>
+        <p>Item Count: {{itemCount}}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Maximum Set</th>
+                    <th>Date Created</th>
+                    <th>Last Updated</th>
+                    <th>Last Edit</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each itemCollection}}
+                    <tr>
+                        <td>{{this.product}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.maxQuantity}}</td>
+                        <td>{{this.createdAt}}</td>
+                        <td>{{this.updatedAt}}</td>
+                        <td>{{this.lastUpdatedBy.user}} {{this.lastUpdatedBy.admin}}</td> <!--this will show either the accounts of users or the admins depending on whats avail-->
+                        <td>
+                            <a href='/status/edit/{{this._id}}'>
+                                <img class="table-icon" src="/edit.png" alt="edit">
+                            </a>
+                            
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </main>
+    
+</body>
+</html>

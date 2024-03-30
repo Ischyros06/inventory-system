@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Report</title>
+    <link rel="stylesheet" href="/dailyReport.css">
+    <!--link rel="stylesheet" href="print-styles.css" media="print"-->
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{user.name}}</li>
+            <li><a href="/goHomeUser">Home</a></li>
+            <li><a href="/dailyReport">Daily Report Tab</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <h1>Daily Report</h1>
+        <br>
+        <!-- Message about data deletion at midnight -->
+        <div class="message">
+            Note: Data will be automatically deleted at midnight.
+            <!-- Countdown timer -->
+            <div class="countdown" id="countdown"></div>
+        </div>
+
+        <br>
+
+        <div class="clickButtons">
+            <button onclick="window.print()">Print Report</button>
+            <button onclick="openConfirmationModal()">Send Report</button>
+        </div>
+
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+                <p>Are you sure you want to send this report?</p>
+                <p>Once sent, you cannot edit it.</p>
+                <p>If you send another report for today, it will update the existing one.</p>
+                <div class="modal-buttons">
+                    <button onclick="sendReport()">Yes</button>
+                    <button onclick="closeConfirmationModal()">No</button>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity Subtracted</th>
+                    <th class="options-column" >Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reportData}}
+                    <tr>
+                        <td>{{this.product}}</td>
+                        <td>{{this.quantitySubtracted}}</td>
+                        <td class="options-column"><button class="undoButtons" onclick="editSubtractedQuantity('{{this.product}}')">−</button></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <p>Used by {{user.name}}</p>
+    </main>
+
+    <script>
+         // Function to open the confirmation modal
+        function openConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'block';
+        }
+
+        // Function to close the confirmation modal
+        function closeConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'none';
+        }
+
+        // Function to update countdown timer
+        function updateCountdown() {
+            // Get the current time
+            const now = new Date();
+            // Get midnight of the next day
+            const midnight = new Date(now);
+            midnight.setHours(24, 0, 0, 0);
+            // Calculate time difference
+            const timeDiff = midnight - now;
+            // Convert time difference to hours, minutes, and seconds
+            const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            // Update countdown display
+            document.getElementById('countdown').innerText = `Time until data deletion: ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Call updateCountdown every second
+        setInterval(updateCountdown, 1000);
+
+
+        /* This function is to undo the accidental decrimented items and get the value back to the original item inventory*/
+        function editSubtractedQuantity(productName) {
+            fetch('/dailyReport/editSubtractedQuantity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productName })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to subtract quantity');
+                }
+                // Refresh the page to reflect the updated quantity subtracted
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error subtracting quantity:', error);
+                // Handle error
+            });
+        };
+
+        /*This function is for sending the contents of the report to the schema that stores the reports submitted to the admin*/
+        function sendReport() {
+            closeConfirmationModal();
+            const userName = "{{user.name}}"; // Ensure that {{user.name}} is replaced with the actual user's name by your server-side templating engine
+            const reportData = Array.from(document.querySelectorAll('tbody tr')).map(row => {
+                return {
+                    product: row.querySelector('td:nth-child(1)').textContent,
+                    quantitySubtracted: parseInt(row.querySelector('td:nth-child(2)').textContent)
+                };
+            });
+
+            fetch('/dailyReport/sendReport', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    userName: userName, // Include the user's name
+                    reportData: reportData
+                    })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to send report');
+                }
+                // Reload the page after successfully sending the report
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error sending report:', error);
+                console.log(userName)
+                // Handle error
+            });
+        };
+    </script>
+</body>
+</html>

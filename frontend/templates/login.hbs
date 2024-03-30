@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+    <form>
+        <div class="logo">
+            <img src="/Casanas Suites.png" alt="Casanas Suites Logo">
+        </div>
+
+        <h2>Login</h2>
+        <label for="name">Username</label>
+        <input type="text" id="name" name="name" required>
+        <div class="errorName"></div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <div class="errorPass"></div>
+        <button>Log in</button>
+        <a href="/chooseRole">Make new account</a>
+    </form>
+
+    <script>
+        const form = document.querySelector('form');
+        const errorName = document.querySelector('.errorName');
+        const errorPass = document.querySelector('.errorPass');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+
+            errorName.textContent = ''; // Clear username error
+            errorPass.textContent = ''; // Clear password error
+
+            // get the values
+            const name = form.name.value;
+            const password = form.password.value;
+            
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ name, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await res.json();
+                // Check for errors in the response
+                if (res.status === 400) {
+                    if (data.error === 'This username does not exist.') {
+                        errorName.textContent = data.error;
+                    } else {
+                        errorPass.textContent = data.error;
+                    }
+                } else if(data.error === "Your account is not approved yet. Please contact the master admin."){
+                    errorPass.textContent = data.error;
+                } else {
+                    // Check the role and redirect accordingly
+                    if (data.role === "admin") {
+                        location.assign('/adminHome');
+                    } else {
+                        location.assign('/userHome');
+                    }
+                }
+            } catch (error){
+                console.error('Error logging in:', error);
+            }
+        });
+    </script>
+</body>
+</html>

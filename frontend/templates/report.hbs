@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="/report.css">
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{admin.name}}</li>
+            <li><a href="/goHomeAdmin">Home</a></li>
+            <li><a href="/status">Status</a></li>
+            <li><a href="/report">Reports</a></li>
+            <li><a href="/needToBuy">Need to Buy</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <h1>Report</h1>
+        <div class="report-container">
+            {{#each reportData}}
+                <div class="report-block">
+                    <p><strong>Report by:</strong> {{this.userName}}</p>
+                    <p><strong>Date:</strong> {{this.createdAt}}</p>
+                    <button class="open-file-btn">Open file</button>
+                    <div class="report-details" style="display: none;">
+                        <p><strong>Account: {{this.userName}}</strong></p>
+                        <p><strong>Date:</strong> {{this.createdAt}}</p>
+                        <p><strong>Items:</strong></p>
+                        <ul>
+                            {{#each this.reportData}}
+                                <li>{{this.product}} - Quantity: {{this.quantitySubtracted}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </main>
+
+    <!-- Modal for report details -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="reportDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('reportModal');
+
+        // Get the button that opens the modal
+        var btns = document.getElementsByClassName("open-file-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function() {
+                var reportDetails = this.nextElementSibling.innerHTML;
+                document.getElementById('reportDetails').innerHTML = reportDetails;
+                modal.style.display = "block";
+            }
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

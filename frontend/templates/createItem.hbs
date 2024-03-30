@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Item</title>
+    <link rel="stylesheet" href="/createItem.css">
+</head>
+<body>
+    
+
+    <form action='/status/submitItem' method="POST" enctype="multipart/form-data">
+        <h1>Create Item</h1>
+        <label for="product">Product:</label>
+        <input type="text" name="product">
+
+        <label for="quantity">Quantity:</label>
+        <input type="text" name="quantity">
+
+        <label for="maxQuantity">Maximum count:</label>
+        <input type="text" name="maxQuantity">
+
+        <label for="picture">Picture:</label> <!-- for picture -->
+        <input type="file" name="picture">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

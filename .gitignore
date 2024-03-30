@@ -1,0 +1,26 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore .env file (if it contains sensitive information)
+backend/.env
+
+# Ignore build artifacts
+/build/
+/dist/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore package lock files
+package-lock.json
+
+# Ignore uploaded files (assumed to be temporary or user-generated)
+frontend/uploads/
+
+# Ignore compiled or generated files
+*.css
+*.png
