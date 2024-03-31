@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/*"
+to = "/home.hbs"
+status = 200
