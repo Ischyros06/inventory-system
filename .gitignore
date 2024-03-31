@@ -18,6 +18,4 @@ npm-debug.log*
 # Ignore package lock files
 package-lock.json
 
-# Ignore uploaded files (assumed to be temporary or user-generated)
-frontend/uploads/
 
