@@ -1,0 +1,103 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+/* Header Styles */
+header {
+    background-color: #4267B2;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+.auth-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4267B2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #4caf50;
+}
+
+/* Description Section Styles */
+.description {
+    padding: 20px;
+    text-align: center;
+}
+
+.description h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Services Section Styles */
+.services {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.services h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.services ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.services li {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4267B2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* Add margin to the bottom of sections to create space */
+.description,
+.services {
+    margin-bottom: 80px; /* Adjust this value as needed */
+}

@@ -21,6 +21,3 @@ package-lock.json
 # Ignore uploaded files (assumed to be temporary or user-generated)
 frontend/uploads/
 
-# Ignore compiled or generated files
-*.css
-*.png
