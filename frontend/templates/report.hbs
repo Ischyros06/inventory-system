@@ -13,6 +13,7 @@
             <li><a href="/goHomeAdmin">Home</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/report">Reports</a></li>
+            <li><a href="/changeLog">Change logs</a></li>
             <li><a href="/needToBuy">Need to Buy</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
@@ -27,14 +28,27 @@
                     <p><strong>Date:</strong> {{this.createdAt}}</p>
                     <button class="open-file-btn">Open file</button>
                     <div class="report-details" style="display: none;">
-                        <p><strong>Account: {{this.userName}}</strong></p>
-                        <p><strong>Date:</strong> {{this.createdAt}}</p>
+                        <p class="account" ><strong>Account: {{this.userName}}</strong></p>
+                        <p class="date"><strong>Date:</strong> {{this.createdAt}}</p>
                         <p><strong>Items:</strong></p>
-                        <ul>
-                            {{#each this.reportData}}
-                                <li>{{this.product}} - Quantity: {{this.quantitySubtracted}}</li>
-                            {{/each}}
-                        </ul>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.reportData}}
+                                <tr>
+                                    <td>{{this.product}}</td>
+                                    <td>{{this.quantitySubtracted}}</td>
+                                    <td>{{this.unit}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             {{/each}}
@@ -46,6 +60,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <div id="reportDetails"></div>
+            <button id="downloadBtn">Download Report</button>
         </div>
     </div>
 
@@ -79,6 +94,67 @@
                 modal.style.display = "none";
             }
         }
+
+        // Function to format and download the report file
+        function downloadReport(userName, createdAt) {
+            fetch('/report/downloadTemp', {
+                method: 'GET',
+                headers: {
+                    // No need for Content-Type header for GET requests
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // If the response is successful, create a blob from the response content
+                    return response.json();
+                }
+                throw new Error('Failed to fetch report template');
+            })
+            .then(({ reportContent, filename }) => {
+                // Create a blob from the report content
+                const blob = new Blob([reportContent], { type: 'text/plain' });
+                // Create a temporary link element
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                // Set the filename obtained from the response
+                link.download = filename;
+                // Trigger the download by simulating a click event on the link
+                link.click();
+                // Clean up the URL object
+                window.URL.revokeObjectURL(link.href);
+            })
+            .catch(error => {
+                console.error('Error downloading report template:', error);
+            });
+        }
+
+        // Get the modal
+        var modal = document.getElementById('reportModal');
+
+        // Get the download button
+        var downloadBtn = document.getElementById('downloadBtn');
+
+        // When the download button is clicked, extract the report details and call the downloadReport function
+        downloadBtn.onclick = function () {
+            // Get the report details only if the modal is open
+            if (modal.style.display === "block") {
+                // Get the report details element
+                var reportDetails = document.querySelector('.report-details').textContent;
+                //console.log(reportDetails);
+                if (reportDetails) {
+                    // Get the userName and createdAt from reportDetails
+                    var userName = reportDetails.split('Account: ')[1].split('\n')[0].trim();
+                    var createdAt = reportDetails.split('Date: ')[1].split('\n')[0].trim();
+                    // Call the downloadReport function with the extracted details
+                    downloadReport(userName, createdAt, reportDetails);
+                } else {
+                    console.error("Report details not found.");
+                }
+            } else {
+                console.error("Modal is not open.");
+            }
+        }
+
     </script>
 </body>
 </html>

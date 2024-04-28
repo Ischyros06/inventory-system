@@ -9,4 +9,7 @@ router.get('/', userAuth, userHomeController.fetchItemsAndRenderHome);
 router.get('/getQuantity', userAuth, userHomeController.getQuantity);
 router.get('/subtractQuantity', userAuth, userHomeController.subtractQuantity);
 
+// New route to fetch items by category
+router.get('/getItemsByCategory/:category', userAuth, userHomeController.getItemsByCategory);
+
 module.exports = router;

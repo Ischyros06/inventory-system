@@ -9,5 +9,8 @@ router.get('/', adminAuth, adminHomeController.renderAdminHome);
 router.get('/getQuantity', adminAuth, adminHomeController.getQuantity);
 router.get('/addQuantity', adminAuth, adminHomeController.addQuantity);
 
+// New route to fetch items by category
+router.get('/getItemsByCategory/:category', adminAuth, adminHomeController.getItemsByCategory);
+
 module.exports = router;
 

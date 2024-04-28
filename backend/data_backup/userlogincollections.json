@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "65fd44578c97ab75be23ec21",
+    "name": "testUser",
+    "password": "$2b$10$orC3iVc4m8k1ZkmWP6nVtuGB4.3NVRfVtQaC0BSbQ2eVpt1Kijz9O",
+    "role": "user",
+    "isApproved": true,
+    "createdAt": "2024-03-22T08:41:59.818Z",
+    "updatedAt": "2024-03-22T08:41:59.818Z",
+    "__v": 0
+  },
+  {
+    "_id": "6600e32d1ac3ff1da0756b34",
+    "name": "userJoseph",
+    "password": "$2b$10$2zz/u7x.tbIdsSFIlN0ILeBE.UGxYAp6y8QCJZfQvebKfPJ5byjga",
+    "role": "user",
+    "isApproved": true,
+    "createdAt": "2024-03-25T02:36:29.910Z",
+    "updatedAt": "2024-03-25T02:36:29.910Z",
+    "__v": 0
+  },
+  {
+    "_id": "6607fabec305b2a8200ba286",
+    "name": "ChesterUser",
+    "password": "$2b$10$cju0dmwOEw6ERp8uilIN5usPTbj1JJPocBeH6SlrKvxKiVeXd0n3C",
+    "role": "user",
+    "isApproved": true,
+    "createdAt": "2024-03-30T11:42:54.620Z",
+    "updatedAt": "2024-03-30T11:42:54.620Z",
+    "__v": 0
+  },
+  {
+    "_id": "6629e1b3ed0670731ce55e70",
+    "name": "importUser",
+    "password": "$2b$10$ApnwwJ1qGy5E6QHlGCbT6eN/2hmYn9MU6DZBbsarG5p45tDnP1S16",
+    "role": "user",
+    "isApproved": true,
+    "createdAt": "2024-04-25T04:53:07.603Z",
+    "updatedAt": "2024-04-25T04:53:07.603Z",
+    "__v": 0
+  }
+]

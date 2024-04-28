@@ -6,7 +6,8 @@ const reportsModel = new mongoose.Schema({
     productAccessed: [{
         _id: false,
         product: String,
-        quantitySubtracted: Number
+        quantitySubtracted: Number,
+        unit: String
     }],
     createdAt: {
         type: Date,

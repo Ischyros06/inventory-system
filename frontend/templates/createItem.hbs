@@ -7,10 +7,26 @@
     <link rel="stylesheet" href="/createItem.css">
 </head>
 <body>
-    
+    <!-- Display error messages -->
+    {{#if errorMessage}}
+    <div class="error-message">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+
+    <!-- Display success messages -->
+    {{#if successMessage}}
+    <div class="success-message">
+        {{successMessage}}
+    </div>
+    {{/if}}
+
+    <!-- Back button -->
+    <a href="/status" class="back-button">&lt; Back</a>
 
     <form action='/status/submitItem' method="POST" enctype="multipart/form-data">
         <h1>Create Item</h1>
+        <input type="hidden" name="userName" value="{{admin.name}}">
         <label for="product">Product:</label>
         <input type="text" name="product">
 
@@ -19,6 +35,23 @@
 
         <label for="maxQuantity">Maximum count:</label>
         <input type="text" name="maxQuantity">
+
+        <label for="unit">Unit of measurement:</label>
+        <select name="unit">
+            <option value="grams">Grams</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="pieces">Pieces</option>
+        </select>
+        <label for="category">Category:</label>
+        <select name="category">
+            <option value="breakfast">Breakfast</option>
+            <option value="condiments">Condiments</option>
+            <option value="drinks">Drinks</option>
+            <option value="fruits">Fruits</option>
+            <option value="kitchen aid">Kitchen Aid</option>
+            <option value="resto">Resto</option>
+            <option value="vegetables">Vegetables</option>
+        </select>
 
         <label for="picture">Picture:</label> <!-- for picture -->
         <input type="file" name="picture">

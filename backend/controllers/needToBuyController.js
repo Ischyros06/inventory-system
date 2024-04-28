@@ -5,6 +5,7 @@ exports.renderNeedToBuyPage = async (req, res) => {
         const items = await itemCollection.find();
         const reportData = items.map(item => ({
             product: item.product,
+            unit: item.unit,
             difference: item.maxQuantity - item.quantity
         }));
 

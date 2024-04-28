@@ -13,6 +13,7 @@
             <li><a href="/goHomeAdmin">Home</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/report">Reports</a></li>
+            <li><a href="/changeLog">Change logs</a></li>
             <li><a href="/needToBuy">Need to Buy</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
@@ -21,7 +22,29 @@
     <main>
         <h1>Item Data Table</h1>
         <button onclick="window.location.href='/status/createItem'">Create</button>
+        <button onclick="openConfirmationModal()">Backup data</button>
         <p>Item Count: {{itemCount}}</p>
+
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+                <p>Are you sure you want to backup all of the data?</p>
+                <p>Backup may take for a while.</p>
+                <p>Only do this if you are not busy.</p>
+                <div class="modal-buttons">
+                    <button onclick="doBackup()">Yes</button>
+                    <button onclick="closeConfirmationModal()">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="progressModal" class="modal">
+            <div class="modal-content">
+                <p>The Backup is currently in progress.</p>
+                <p>This will take a minute, please wait...</p> <br>
+                <img class="loader-img" src="/loader.gif" alt="loading">
+            </div>
+        </div>
 
         <table>
             <thead>
@@ -29,6 +52,8 @@
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Maximum Set</th>
+                    <th>Unit</th>
+                    <th>Category</th>
                     <th>Date Created</th>
                     <th>Last Updated</th>
                     <th>Last Edit</th>
@@ -41,6 +66,8 @@
                         <td>{{this.product}}</td>
                         <td>{{this.quantity}}</td>
                         <td>{{this.maxQuantity}}</td>
+                        <td>{{this.unit}}</td>
+                        <td>{{this.category}}</td>
                         <td>{{this.createdAt}}</td>
                         <td>{{this.updatedAt}}</td>
                         <td>{{this.lastUpdatedBy.user}} {{this.lastUpdatedBy.admin}}</td> <!--this will show either the accounts of users or the admins depending on whats avail-->
@@ -56,5 +83,67 @@
         </table>
     </main>
     
+    <script>
+        // Function to open the confirmation modal
+        function openConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'block';
+        };
+
+        // Function to close the confirmation modal
+        function closeConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'none';
+        };
+
+
+        function openProgressModal() {
+            const modal = document.getElementById('progressModal');
+            modal.style.display = 'block';
+        };
+
+        // Function to close the progress modal
+        function closeProgressModal() {
+            const modal = document.getElementById('progressModal');
+            modal.style.display = 'none';
+        };
+
+        async function doBackup() {
+            // Open the progress modal
+            closeConfirmationModal();
+            openProgressModal();
+            try {
+                const response = await fetch('/status/backupData', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Wait for the server to restart (this is a workaround)
+                    await new Promise(resolve => setTimeout(resolve, 90000));
+
+                    // Close the progress modal
+                    closeProgressModal();
+
+                    // Show the alert after the server has restarted
+                    const data = await response.json();
+                    alert(data.message);
+                } else {
+                    throw new Error('Backup failed');
+                }
+            } catch (error) {
+                console.error('Error during backup:', error);
+                alert('An error occurred during backup');
+                window.location.reload();
+            } finally {
+                 // Close the progress modal
+                closeProgressModal();
+                closeConfirmationModal();
+                window.location.reload();
+            }
+        }
+    </script>
 </body>
 </html>

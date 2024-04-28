@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Need to Buy</title>
     <link rel="stylesheet" href="/needToBuy.css">
-    <!--link rel="stylesheet" href="print-styles.css" media="print"-->
 </head>
 <body>
     <aside>
@@ -14,6 +13,7 @@
             <li><a href="/goHomeAdmin">Home</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/report">Reports</a></li>
+            <li><a href="/changeLog">Change logs</a></li>
             <li><a href="/needToBuy">Need to Buy</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
@@ -28,6 +28,7 @@
             <thead>
                 <tr>
                     <th>Product</th>
+                    <th>Unit</th>
                     <th>Quantity Needed</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                 {{#each reportData}}
                     <tr>
                         <td>{{this.product}}</td>
+                        <td>{{this.unit}}</td>
                         <td>{{this.difference}}</td>
                     </tr>
                 {{/each}}

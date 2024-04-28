@@ -10,12 +10,17 @@ const submittedReportsSchema = new mongoose.Schema({
         required: true
     },
     reportData: [{
+        _id: false,
         product: {
             type: String,
             required: true
         },
         quantitySubtracted: {
             type: Number,
+            required: true
+        }, 
+        unit: {
+            type: String,
             required: true
         }
     }],

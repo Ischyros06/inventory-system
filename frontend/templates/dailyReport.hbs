@@ -13,6 +13,7 @@
             <li>Welcome, {{user.name}}</li>
             <li><a href="/goHomeUser">Home</a></li>
             <li><a href="/dailyReport">Daily Report Tab</a></li>
+            <li><a href="/changeLogView/user">Change Logs</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </aside>
@@ -52,6 +53,7 @@
                 <tr>
                     <th>Product</th>
                     <th>Quantity Subtracted</th>
+                    <th>Unit</th>
                     <th class="options-column" >Options</th>
                 </tr>
             </thead>
@@ -60,7 +62,11 @@
                     <tr>
                         <td>{{this.product}}</td>
                         <td>{{this.quantitySubtracted}}</td>
-                        <td class="options-column"><button class="undoButtons" onclick="editSubtractedQuantity('{{this.product}}')">−</button></td>
+                        <td>{{this.unit}}</td>
+                        <td class="options-column">
+                            <input type="number" id="quantityInput" placeholder="Enter quantity" class="quantity-input" data-unit="{{this.unit}}" min="1">
+                            <button class="undoButtons" onclick="editSubtractedQuantity('{{this.product}}', event)">−</button>
+                        </td>
                     </tr>
                 {{/each}}
             </tbody>
@@ -103,13 +109,17 @@
 
 
         /* This function is to undo the accidental decrimented items and get the value back to the original item inventory*/
-        function editSubtractedQuantity(productName) {
+        function editSubtractedQuantity(productName, event) {
+            const userName = '{{user.name}}';
+            const quantityInput = event.target.parentNode.querySelector('.quantity-input').value; // Get the input value relative to the button
+            const quantityValue = parseInt(quantityInput) || 1;
+
             fetch('/dailyReport/editSubtractedQuantity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ productName })
+                body: JSON.stringify({ productName, userName, quantityValue })
             })
             .then(response => {
                 if (!response.ok) {
@@ -131,7 +141,8 @@
             const reportData = Array.from(document.querySelectorAll('tbody tr')).map(row => {
                 return {
                     product: row.querySelector('td:nth-child(1)').textContent,
-                    quantitySubtracted: parseInt(row.querySelector('td:nth-child(2)').textContent)
+                    quantitySubtracted: parseInt(row.querySelector('td:nth-child(2)').textContent),
+                    unit: row.querySelector('td:nth-child(3)').textContent
                 };
             });
 
@@ -158,6 +169,20 @@
                 // Handle error
             });
         };
+
+        // Function to toggle input visibility based on unit type
+        const toggleInputVisibility = () => {
+            // Remove the unit parameter from the function definition
+            const inputs = document.querySelectorAll('.quantity-input');
+            inputs.forEach(input => {
+                // Change 'document' to 'input' and fix the attribute name to 'dataset.unit'
+                const unit = input.dataset.unit;
+                input.style.display = unit === 'grams' || unit === 'milliliters' ? 'block' : 'none';
+            });
+        };
+
+        // Call toggleInputVisibility on page load
+        toggleInputVisibility();
     </script>
 </body>
 </html>

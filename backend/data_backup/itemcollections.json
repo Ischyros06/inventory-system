@@ -1,0 +1,563 @@
+[
+  {
+    "_id": "661db34a8420f8cdb6e5d2b3",
+    "product": "apple",
+    "quantity": 35,
+    "maxQuantity": 55,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "apple.png",
+    "createdAt": "2024-04-15T23:07:54.076Z",
+    "updatedAt": "2024-04-28T03:04:59.146Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "661db35a8420f8cdb6e5d2bc",
+    "product": "banana",
+    "quantity": 40,
+    "maxQuantity": 50,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "banana.png",
+    "createdAt": "2024-04-15T23:08:10.340Z",
+    "updatedAt": "2024-04-26T06:47:44.061Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "661db3828420f8cdb6e5d2c5",
+    "product": "oil",
+    "quantity": 19,
+    "maxQuantity": 20,
+    "unit": "bottle",
+    "category": "condiments",
+    "picture": "oil.png",
+    "createdAt": "2024-04-15T23:08:50.568Z",
+    "updatedAt": "2024-04-24T07:22:22.321Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661db3998420f8cdb6e5d2cb",
+    "product": "ketchup",
+    "quantity": 15,
+    "maxQuantity": 20,
+    "unit": "bottle",
+    "category": "condiments",
+    "picture": "ketchup.png",
+    "createdAt": "2024-04-15T23:09:13.188Z",
+    "updatedAt": "2024-04-22T16:47:53.307Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661db4218420f8cdb6e5d2d3",
+    "product": "soy sauce",
+    "quantity": 20,
+    "maxQuantity": 20,
+    "unit": "bottle",
+    "category": "condiments",
+    "picture": "soysauce.png",
+    "createdAt": "2024-04-15T23:11:29.952Z",
+    "updatedAt": "2024-04-15T23:11:29.952Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "ChesterUser"
+    }
+  },
+  {
+    "_id": "661db4378420f8cdb6e5d2dc",
+    "product": "vinegar",
+    "quantity": 20,
+    "maxQuantity": 20,
+    "unit": "bottle",
+    "category": "condiments",
+    "picture": "oil.png",
+    "createdAt": "2024-04-15T23:11:51.916Z",
+    "updatedAt": "2024-04-15T23:11:51.916Z",
+    "__v": 0
+  },
+  {
+    "_id": "661db4828420f8cdb6e5d2ee",
+    "product": "pumpkin",
+    "quantity": 20,
+    "maxQuantity": 20,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "pumpkin.png",
+    "createdAt": "2024-04-15T23:13:06.564Z",
+    "updatedAt": "2024-04-15T23:13:06.564Z",
+    "__v": 0
+  },
+  {
+    "_id": "661db4948420f8cdb6e5d2f7",
+    "product": "eggplant",
+    "quantity": 38,
+    "maxQuantity": 40,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "eggplant.png",
+    "createdAt": "2024-04-15T23:13:24.365Z",
+    "updatedAt": "2024-04-24T16:35:35.029Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661db4b88420f8cdb6e5d300",
+    "product": "corn",
+    "quantity": 40,
+    "maxQuantity": 40,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "corn.png",
+    "createdAt": "2024-04-15T23:14:00.427Z",
+    "updatedAt": "2024-04-25T04:51:55.084Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661db4fd8420f8cdb6e5d310",
+    "product": "orange",
+    "quantity": 49,
+    "maxQuantity": 50,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "orange.png",
+    "createdAt": "2024-04-15T23:15:09.929Z",
+    "updatedAt": "2024-04-24T07:22:24.727Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661db5848420f8cdb6e5d319",
+    "product": "styrofoam",
+    "quantity": 20,
+    "maxQuantity": 20,
+    "unit": "pieces",
+    "category": "kitchen aid",
+    "picture": "styro foam.png",
+    "createdAt": "2024-04-15T23:17:24.814Z",
+    "updatedAt": "2024-04-15T23:17:24.814Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "ChesterUser"
+    }
+  },
+  {
+    "_id": "661db5e78420f8cdb6e5d322",
+    "product": "paper box",
+    "quantity": 25,
+    "maxQuantity": 25,
+    "unit": "pieces",
+    "category": "kitchen aid",
+    "picture": "paper box.png",
+    "createdAt": "2024-04-15T23:19:03.710Z",
+    "updatedAt": "2024-04-24T07:23:36.733Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661db5f98420f8cdb6e5d32b",
+    "product": "rolling paper",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "pieces",
+    "category": "kitchen aid",
+    "picture": "rolling paper.png",
+    "createdAt": "2024-04-15T23:19:21.947Z",
+    "updatedAt": "2024-04-15T23:19:21.947Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "ChesterUser"
+    }
+  },
+  {
+    "_id": "661db7198420f8cdb6e5d33b",
+    "product": "tissue paper",
+    "quantity": 50,
+    "maxQuantity": 50,
+    "unit": "packs",
+    "category": "resto",
+    "picture": "tissue paper.png",
+    "createdAt": "2024-04-15T23:24:09.371Z",
+    "updatedAt": "2024-04-15T23:24:09.371Z",
+    "__v": 0
+  },
+  {
+    "_id": "661db7398420f8cdb6e5d344",
+    "product": "bending straw",
+    "quantity": 20,
+    "maxQuantity": 40,
+    "unit": "packs",
+    "category": "resto",
+    "picture": "bending straw.png",
+    "createdAt": "2024-04-15T23:24:41.695Z",
+    "updatedAt": "2024-04-26T06:47:48.911Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "661db7648420f8cdb6e5d34e",
+    "product": "plastic coffee stirrer",
+    "quantity": 40,
+    "maxQuantity": 40,
+    "unit": "packs",
+    "category": "resto",
+    "picture": "coffee stirrer.png",
+    "createdAt": "2024-04-15T23:25:24.602Z",
+    "updatedAt": "2024-04-15T23:25:24.602Z",
+    "__v": 0
+  },
+  {
+    "_id": "661db8718420f8cdb6e5d369",
+    "product": "hotdog",
+    "quantity": 20,
+    "maxQuantity": 20,
+    "unit": "packs",
+    "category": "breakfast",
+    "picture": "hotdogs.png",
+    "createdAt": "2024-04-15T23:29:53.373Z",
+    "updatedAt": "2024-04-15T23:29:53.373Z",
+    "__v": 0
+  },
+  {
+    "_id": "661db88a8420f8cdb6e5d372",
+    "product": "beef tapa",
+    "quantity": 30,
+    "maxQuantity": 40,
+    "unit": "packs",
+    "category": "breakfast",
+    "picture": "beef tapa.png",
+    "createdAt": "2024-04-15T23:30:18.859Z",
+    "updatedAt": "2024-04-26T06:47:46.021Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "661db8a48420f8cdb6e5d37b",
+    "product": "corned beef",
+    "quantity": 30,
+    "maxQuantity": 40,
+    "unit": "can",
+    "category": "breakfast",
+    "picture": "corned beef.png",
+    "createdAt": "2024-04-15T23:30:44.379Z",
+    "updatedAt": "2024-04-25T14:18:01.853Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661db9658420f8cdb6e5d384",
+    "product": "coffee stick",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "drinks",
+    "picture": "Nescafe-Classic-Stick.png",
+    "createdAt": "2024-04-15T23:33:57.744Z",
+    "updatedAt": "2024-04-25T04:51:54.029Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661db99d8420f8cdb6e5d396",
+    "product": "coffee creamer",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "drinks",
+    "picture": "coffee mate.png",
+    "createdAt": "2024-04-15T23:34:53.288Z",
+    "updatedAt": "2024-04-25T15:36:09.835Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661db9bb8420f8cdb6e5d39f",
+    "product": "iced tea",
+    "quantity": 39,
+    "maxQuantity": 40,
+    "unit": "sachet",
+    "category": "drinks",
+    "picture": "iced tea.png",
+    "createdAt": "2024-04-15T23:35:23.666Z",
+    "updatedAt": "2024-04-17T13:39:14.801Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661dfd8e6068a93ea6b9156b",
+    "product": "pineapple",
+    "quantity": 18,
+    "maxQuantity": 20,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "pineapple.png",
+    "createdAt": "2024-04-16T04:24:46.232Z",
+    "updatedAt": "2024-04-24T07:23:23.877Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661e3eac6034f31598ea2345",
+    "product": "mango",
+    "quantity": 18,
+    "maxQuantity": 20,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "mango.png",
+    "createdAt": "2024-04-16T09:02:36.267Z",
+    "updatedAt": "2024-04-22T15:09:16.594Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "661e42b786631dd75285c177",
+    "product": "okra",
+    "quantity": 28,
+    "maxQuantity": 30,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "okra.png",
+    "createdAt": "2024-04-16T09:19:51.141Z",
+    "updatedAt": "2024-04-24T07:22:26.306Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "661e42c786631dd75285c17e",
+    "product": "bitter melon",
+    "quantity": 25,
+    "maxQuantity": 30,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "bitter melon.png",
+    "createdAt": "2024-04-16T09:20:07.842Z",
+    "updatedAt": "2024-04-25T04:54:29.452Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "661e53637ae71925140926a7",
+    "product": "potato",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "pieces",
+    "category": "vegetables",
+    "picture": "potato.png",
+    "createdAt": "2024-04-16T10:30:59.934Z",
+    "updatedAt": "2024-04-16T10:30:59.934Z",
+    "__v": 0
+  },
+  {
+    "_id": "6623216be976db7b14cece66",
+    "product": "salt",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "condiments",
+    "picture": "salt.png",
+    "createdAt": "2024-04-20T01:59:07.950Z",
+    "updatedAt": "2024-04-20T01:59:07.950Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "ChesterUser"
+    }
+  },
+  {
+    "_id": "6623227ce976db7b14cece80",
+    "product": "magic sarap",
+    "quantity": 29,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "condiments",
+    "picture": "MAGGI Magic Sarap 8g.png",
+    "createdAt": "2024-04-20T02:03:40.048Z",
+    "updatedAt": "2024-04-24T07:22:23.256Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "662322f5e976db7b14cece9e",
+    "product": "watermelon",
+    "quantity": 40,
+    "maxQuantity": 40,
+    "unit": "pieces",
+    "category": "fruits",
+    "picture": "watermelon.png",
+    "createdAt": "2024-04-20T02:05:41.460Z",
+    "updatedAt": "2024-04-20T02:05:41.460Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "ChesterUser"
+    }
+  },
+  {
+    "_id": "662323a7e976db7b14cecebd",
+    "product": "disposable spoon",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "kitchen aid",
+    "picture": "disposable spoon.png",
+    "createdAt": "2024-04-20T02:08:39.308Z",
+    "updatedAt": "2024-04-24T16:36:36.003Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "6623241fe976db7b14cecece",
+    "product": "disposable fork",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "kitchen aid",
+    "picture": "disposable fork.png",
+    "createdAt": "2024-04-20T02:10:39.445Z",
+    "updatedAt": "2024-04-24T16:36:36.626Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  },
+  {
+    "_id": "66232443e976db7b14ceced5",
+    "product": "plastic rollbag (m)",
+    "quantity": 25,
+    "maxQuantity": 30,
+    "unit": "pieces",
+    "category": "kitchen aid",
+    "picture": "rollbag.png",
+    "createdAt": "2024-04-20T02:11:15.424Z",
+    "updatedAt": "2024-04-24T07:23:28.271Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "662324cce976db7b14cecee8",
+    "product": "danggit",
+    "quantity": 35,
+    "maxQuantity": 40,
+    "unit": "packs",
+    "category": "breakfast",
+    "picture": "danggit.png",
+    "createdAt": "2024-04-20T02:13:32.266Z",
+    "updatedAt": "2024-04-26T06:47:51.981Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "importUser"
+    }
+  },
+  {
+    "_id": "66232555e976db7b14ceceef",
+    "product": "eggs",
+    "quantity": 45,
+    "maxQuantity": 50,
+    "unit": "pieces",
+    "category": "breakfast",
+    "picture": "eggs.png",
+    "createdAt": "2024-04-20T02:15:49.155Z",
+    "updatedAt": "2024-04-24T07:23:46.254Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "662325f1e976db7b14cecf07",
+    "product": "loaf bread",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "packs",
+    "category": "breakfast",
+    "picture": "loaf bread.png",
+    "createdAt": "2024-04-20T02:18:25.820Z",
+    "updatedAt": "2024-04-24T07:23:38.022Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "user": "testUser"
+    }
+  },
+  {
+    "_id": "6623268ce976db7b14cecf2d",
+    "product": "milo",
+    "quantity": 50,
+    "maxQuantity": 50,
+    "unit": "pieces",
+    "category": "drinks",
+    "picture": "milo.png",
+    "createdAt": "2024-04-20T02:21:00.789Z",
+    "updatedAt": "2024-04-20T02:21:00.789Z",
+    "__v": 0
+  },
+  {
+    "_id": "662328c6e976db7b14cecf34",
+    "product": "redhorse(stallion)",
+    "quantity": 30,
+    "maxQuantity": 30,
+    "unit": "case",
+    "category": "drinks",
+    "picture": "redhorse(stallion).png",
+    "createdAt": "2024-04-20T02:30:30.646Z",
+    "updatedAt": "2024-04-20T02:30:30.646Z",
+    "__v": 0
+  },
+  {
+    "_id": "662686c58ae3ae7d7fba9535",
+    "product": "patis",
+    "quantity": 750,
+    "maxQuantity": 1000,
+    "unit": "milliliters",
+    "category": "condiments",
+    "picture": "patis.png",
+    "createdAt": "2024-04-22T15:48:21.217Z",
+    "updatedAt": "2024-04-25T04:55:03.408Z",
+    "__v": 0,
+    "lastUpdatedBy": {
+      "admin": "admin"
+    }
+  }
+]

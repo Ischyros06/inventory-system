@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Logs</title>
+    <link rel="stylesheet" href="/changeLog.css">
+</head>
+<body>
+    <aside>
+        <ul>
+            <li>Welcome, {{user.name}}</li>
+            <li><a href="/goHomeUser">Home</a></li>
+            <li><a href="/dailyReport">Daily Report Tab</a></li>
+            <li><a href="/changeLogView/user">Change Logs</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <h1>Change Logs</h1>
+        <div class="log-container">
+            {{#each changeLogs}}
+                <div class="log-item">
+                    <p><strong>Date:</strong> {{this.createdAt}}</p>
+                    <p><strong>User:</strong> {{this.userName}}</p>
+                    <p><strong>Action:</strong> {{this.action}}</p>
+                    {{#if this.product}}
+                        <p><strong>Product:</strong> {{this.product}}</p>
+                    {{/if}}
+                    {{#if this.count}}
+                        <p><strong>Count:</strong> {{this.count}}</p>
+                    {{/if}}
+                    {{#if this.maxLimit}}
+                        <p><strong>Set Limit:</strong> {{this.maxLimit}}</p>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+    </main>
+</body>
+</html>

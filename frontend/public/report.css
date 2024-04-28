@@ -134,6 +134,7 @@ main {
 
 .report-block p {
     margin: 0 0 10px;
+    font-size: 25px;
 }
 
 /* Styles for the modal */
@@ -146,17 +147,18 @@ main {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black with opacity */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
 }
 
 /* Modal content */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto auto 15%; /* 15% from the top, centered, 15% from the left*/
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Set the width of the modal */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%; /* Set the width of the modal */
+    text-align: center; /* Center the content horizontally */
 }
 
 /* Close button */
@@ -172,6 +174,28 @@ main {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Add some space between the table and the previous content */
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2; /* Light gray background for table header */
+    color: #333; /* Darker text color for table header */
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row background color */
 }
 
 /* Styles for print */

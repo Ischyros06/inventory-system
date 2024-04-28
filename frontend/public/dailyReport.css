@@ -121,6 +121,26 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+.options-column {
+    position: relative;
+}
+
+.quantity-input {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    padding: 5px; /* Add padding to make it visually appealing */
+    border: 1px solid #ccc; /* Add a border for clarity */
+    border-radius: 5px; /* Round the corners */
+    width: 150px; /* Set a fixed width */
+    margin-top: 10px; /* Add some space between elements */
+    margin-bottom: 10px;
+    font-size: 16px; /* Adjust font size */
+}
+
+.undoButtons {
+    z-index: 0;
+}
+
 /* CSS for the message */
 .message {
     display: inline;

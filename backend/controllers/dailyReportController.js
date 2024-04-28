@@ -1,6 +1,7 @@
 const { submittedReports } = require('../models/SubmittedReportsModel');
 const { reportCollection } = require('../models/ReportCollectionModel');
 const { itemCollection } = require('../models/ItemCollectionModel');
+const { changeLog } = require('../models/ChangeLogModel');
 
 // Generate daily report dynamically based on user actions
 const getDailyReport = async (req, res) => {
@@ -22,7 +23,9 @@ at the same time returning the decremented values
 to the itemCollection*/
 const editSubtractedQuantity = async (req, res) => {
     const userId = req.user.id;
-    const productName = req.body.productName; 
+    const userName = req.body.userName;
+    const productName = req.body.productName;
+    const quantityValue = req.body.quantityValue;
 
     try {
         const report = await reportCollection.findOne({ userId: userId });
@@ -30,17 +33,40 @@ const editSubtractedQuantity = async (req, res) => {
         const productIndex = report.productAccessed.findIndex(product => product.product === productName);
         
         if (productIndex !== -1) {
-            const quantitySubtracted = --report.productAccessed[productIndex].quantitySubtracted;
-
-            if (quantitySubtracted === 0) {
-                report.productAccessed.splice(productIndex, 1); 
+            report.productAccessed[productIndex].quantitySubtracted -= quantityValue;
+            
+            if (report.productAccessed[productIndex].quantitySubtracted === 0) {
+                report.productAccessed.splice(productIndex, 1);
             }
 
             await report.save();
 
+            // Check for existing log entry
+            const existingLog = await changeLog.findOne({
+                userName,
+                product: productName,
+                action: 'undid',
+                createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
+            });
+
+            if (existingLog) {
+                // If an existing log entry exists within the last 5 seconds, update the count
+                await changeLog.updateOne({ _id: existingLog._id }, { $inc: { count: quantityValue } });
+            } else {
+                // Create a new log entry
+                await changeLog.create({
+                    userName,
+                    role: 'user', // Set role to 'user'
+                    action: 'undid', // Set action to 'undid'
+                    product: productName,
+                    count: quantityValue, // Increment count by one
+                    createdAt: new Date() // Set the current date
+                });
+            }
+
             await itemCollection.updateOne(
                 { product: productName },
-                {$inc: {quantity: 1}} 
+                {$inc: {quantity: quantityValue}} 
             )
 
             res.status(200).send('Quantity subtracted successfully');
@@ -81,6 +107,26 @@ const sendReport = async (req, res) => {
         }
 
         await report.save();
+
+        // Log the report submission
+        const existingLog = await changeLog.findOne({
+            userName,
+            action: 'sent',
+            createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
+        });
+
+        if (existingLog) {
+            // If an existing log entry exists within the last 5 seconds, update the count
+            await changeLog.updateOne({ _id: existingLog._id }, { $inc: { count: 1 } });
+        } else {
+            // Create a new log entry
+            await changeLog.create({
+                userName,
+                role: 'user', // Set role to 'user'
+                action: 'sent',
+                createdAt: new Date() // Set the current date
+            });
+        }
 
         await reportCollection.deleteOne({ userId: userId });
 

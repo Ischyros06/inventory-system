@@ -6,7 +6,8 @@ const path = require("path");
 const hbs = require("hbs");
 const methodOverride = require('method-override');
 const cookieParser = require("cookie-parser"); //package for making a cookie
-//const mongodb = require('../models/mongodb.js');
+const fs = require('fs'); //required for data backup
+const open = require('opn');
 
 // Import environment variables
 const env = require('dotenv').config({path: path.resolve(__dirname, './.env')});
@@ -24,10 +25,10 @@ const public = path.join(__dirname, './../frontend/public');
 const { adminAuth, userAuth, checkAcc } = require('./routes/authMiddleware'); // importing authMiddleware.js file
 const { Collection } = require("mongoose");
 const { Console } = require("console");
+const { connectToMongoDB } = require('../backend/controllers/mongoConnect');
 
 // Import the collections from the database
-const { itemCollection } = require("./models/ItemCollectionModel"); 
-const { reportCollection } = require('./models/ReportCollectionModel');
+const { itemCollection } = require("../backend/models/ItemCollectionModel"); 
 
 // Setup middleware
 app.use(express.json());
@@ -61,12 +62,15 @@ const dailyReportRoutes = require('./routes/dailyReports');
 const adminSignupRoutes = require('./routes/adminSignups');
 const userSignupRoutes = require('./routes/userSignups');
 const loginRoutes = require('./routes/logins');
+const changeLogRoutes = require('./routes/changeLogs');
 
 app.use('/adminHome', adminAuth, adminHomeRoutes);
 app.use('/userHome', userAuth, userHomeRoutes);
 app.use('/status', adminAuth, statusRoutes);
 app.use('/report', adminAuth, reportRoutes);
 app.use('/needToBuy', adminAuth, needToBuyRoutes);
+app.use('/changeLog', adminAuth, changeLogRoutes);
+app.use('/changeLogView', userAuth, changeLogRoutes);
 app.use('/dailyReport', userAuth, dailyReportRoutes);
 app.use('/adminSignup', adminSignupRoutes);
 app.use('/userSignup', userSignupRoutes);
@@ -75,8 +79,8 @@ app.use('/login', loginRoutes);
 // Route to get near-depletion items inside the frontend
 app.get('/getNearDepletionItems', async (req, res) => {
     try {
-        // Fetch items from the database where the quantity is less than 10
-        const nearDepletionItems = await itemCollection.find({ quantity: { $lt: 10 } });
+        // Fetch items from the database where the quantity is less than 5
+        const nearDepletionItems = await itemCollection.find({ quantity: { $lt: 5 } });
 
          // Send SMS notification if there are items near depletion
         if (nearDepletionItems.length > 0) {
@@ -101,6 +105,20 @@ app.get('/logout', async(req, res) => {
     res.redirect('/'); //going back to home
 });
 
+// async function to start the server and perform other setup tasks
+async function startServer() {
+    // Start the MongoDB connection
+    await connectToMongoDB();
+
+    // Start the server
+    app.listen(process.env.PORT, '0.0.0.0', function() {
+        console.log('Server listening on port', process.env.PORT);
+    });
+}
+
+// Call the startServer function to begin the setup process
+startServer();
+
 /*
 function using twilio.api for sms notification
 */
@@ -122,39 +140,4 @@ function sendTextMessage(nearDepletionItems){
         console.log(error);
     });
     
-}
-
-async function connectToMongoDB() {
-    try {
-        await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log('MongoDB connected');
-        // Call any initialization functions after the connection is established
-        await deleteOldData();
-    } catch (err) {
-        console.error('Failed to connect to MongoDB:', err);
-    }
-}
-
-// Establish MongoDB connection
-connectToMongoDB();
-
-
-// Function to delete old data from report collection - ORIGINAL CODE
-const deleteOldData = async () => {
-    try {
-        // Get the current date
-        const today = new Date();
-        
-        // Find and delete documents created before today
-        await reportCollection.deleteMany({ createdAt: { $lt: today.setHours(0, 0, 0, 0) } });
-        
-        console.log('Old data deleted successfully');
-    } catch (error) {
-        console.error('Error deleting old data:', error);
-    }
 };
-
-// Start server
-app.listen(process.env.PORT, function() {
-    console.log('Server listening on port', process.env.PORT);
-});

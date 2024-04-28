@@ -7,6 +7,40 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    flex-direction: column; /* Added */
+}
+
+.error-message,
+.success-message {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px; /* Added */
+    font-weight: bold;
+}
+
+.error-message{
+    color: #f70909;
+}
+
+.success-message{
+    color:#10aa16
+}
+
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 7px 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #333;
+    color: #fff;
 }
 
 h1 {
