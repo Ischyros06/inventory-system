@@ -1,8 +1,9 @@
 const express = require('express');
 const { adminAuth } = require('./authMiddleware');
 const { changeLog } = require('../models/ChangeLogModel');
-const { getAllItems, createItem, getItemById, updateItem, upload, backup } = require('../controllers/statusController');
+const { getAllItems, createItem, getItemById, updateItem, upload, backup, importDataToMongoDB } = require('../controllers/statusController');
 const { itemCollection } = require('../models/ItemCollectionModel');
+const path = require('path');
 
 const router = express.Router();
 
@@ -143,11 +144,23 @@ router.post('/submitEdit/:id', adminAuth, async (req, res) => {
 // Route for triggering backup
 router.get('/backupData', adminAuth, async (req, res) => {
     try {
-        await backup();
+        const desktopFolder = path.join(require('os').homedir(), 'Desktop');
+        await backup(desktopFolder);
         res.status(200).json({ message: 'Backup completed successfully' });
     } catch (error) {
         console.error('Backup failed:', error);
         res.status(500).json({ message: 'Backup failed' });
+    }
+});
+
+router.get('/importData', adminAuth, async (req, res) => {
+    try {
+        const desktopFolder = path.join(require('os').homedir(), 'Desktop');
+        await importDataToMongoDB(desktopFolder);
+        res.status(200).json({ message: 'Import completed successfully' });
+    } catch (error) {
+        console.error('Import failed:', error);
+        res.status(500).json({ message: 'Import failed' });
     }
 });
 

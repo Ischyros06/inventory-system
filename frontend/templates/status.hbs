@@ -22,9 +22,11 @@
     <main>
         <h1>Item Data Table</h1>
         <button onclick="window.location.href='/status/createItem'">Create</button>
-        <!--button onclick="openConfirmationModal()">Backup data</button-->
+        <button onclick="openConfirmationModal()">Backup data</button>
+        <button onclick="openImportConfirmationModal()">Import Data</button>
         <p>Item Count: {{itemCount}}</p>
 
+        <!-- Modal for data backup -->
         <div id="confirmationModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeConfirmationModal()">&times;</span>
@@ -40,8 +42,30 @@
 
         <div id="progressModal" class="modal">
             <div class="modal-content">
-                <p>The Backup is currently in progress.</p>
-                <p>This will take a minute, please wait...</p> <br>
+                <p>Backup is currently in progress.</p>
+                <p>This may take a minute, please wait...</p> <br>
+                <img class="loader-img" src="/loader.gif" alt="loading">
+            </div>
+        </div>
+
+        <!-- Modal for data import -->
+        <div id="importConfirmationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeImportConfirmationModal()">&times;</span>
+                <p>Are you sure you want to import all of the data?</p>
+                <p>Make sure that you have a folder named <strong style="color: red;">'data_backup'</strong> which is produced by backup data button.</p>
+                <p>Only do this if you are not busy.</p>
+                <div class="modal-buttons"></div>
+                    <button onclick="doImport()">Yes</button>
+                    <button onclick="closeImportConfirmationModal()">No</button>
+                </div> 
+            </div>
+        </div>
+
+        <div id="importProgressModal" class="modal">
+            <div class="modal-content">
+                <p>Importing data is currently in progress.</p>
+                <p>This may take a minute, please wait...</p> <br>
                 <img class="loader-img" src="/loader.gif" alt="loading">
             </div>
         </div>
@@ -108,6 +132,29 @@
             modal.style.display = 'none';
         };
 
+        // Function to open the confirmation modal
+        function openImportConfirmationModal() {
+            const modal = document.getElementById('importConfirmationModal');
+            modal.style.display = 'block';
+        };
+
+        // Function to close the confirmation modal
+        function closeImportConfirmationModal() {
+            const modal = document.getElementById('importConfirmationModal');
+            modal.style.display = 'none';
+        };
+
+        function openImportProgressModal() {
+            const modal = document.getElementById('importProgressModal');
+            modal.style.display = 'block';
+        };
+
+        // Function to close the progress modal
+        function closeImportProgressModal() {
+            const modal = document.getElementById('importProgressModal');
+            modal.style.display = 'none';
+        };
+
         async function doBackup() {
             // Open the progress modal
             closeConfirmationModal();
@@ -122,7 +169,7 @@
 
                 if (response.ok) {
                     // Wait for the server to restart (this is a workaround)
-                    await new Promise(resolve => setTimeout(resolve, 90000));
+                    await new Promise(resolve => setTimeout(resolve, 10000));
 
                     // Close the progress modal
                     closeProgressModal();
@@ -141,6 +188,43 @@
                  // Close the progress modal
                 closeProgressModal();
                 closeConfirmationModal();
+                window.location.reload();
+            }
+        }
+
+        async function doImport() {
+            // Open the progress modal
+            closeImportConfirmationModal();
+            openImportProgressModal();
+            try {
+                const response = await fetch('/status/importData', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Wait for the server to restart (this is a workaround)
+                    await new Promise(resolve => setTimeout(resolve, 10000));
+
+                    // Close the progress modal
+                    closeImportProgressModal();
+
+                    // Show the alert after the server has restarted
+                    const data = await response.json();
+                    alert(data.message);
+                } else {
+                    throw new Error('Import failed');
+                }
+            } catch (error) {
+                console.error('Error during import:', error);
+                alert('An error occurred during import');
+                window.location.reload();
+            } finally {
+                 // Close the progress modal
+                closeImportProgressModal();
+                closeImportConfirmationModal();
                 window.location.reload();
             }
         }
