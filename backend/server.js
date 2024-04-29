@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser"); //package for making a cookie
 const fs = require('fs'); //required for data backup
 const open = require('opn');
 
+
 // Import environment variables
 const env = require('dotenv').config({path: path.resolve(__dirname, './.env')});
 
@@ -75,6 +76,9 @@ app.use('/dailyReport', userAuth, dailyReportRoutes);
 app.use('/adminSignup', adminSignupRoutes);
 app.use('/userSignup', userSignupRoutes);
 app.use('/login', loginRoutes);
+
+//electron test route
+
 
 // Route to get near-depletion items inside the frontend
 app.get('/getNearDepletionItems', async (req, res) => {

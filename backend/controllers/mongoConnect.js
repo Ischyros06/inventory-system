@@ -8,7 +8,7 @@ const connectToMongoDB = async () => {
         // First, attempt to connect to MongoDB Atlas
         await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log('MongoDB Atlas connected');
-        importDataToMongoDB();
+        //importDataToMongoDB();
         deleteOldData();
     } catch (atlasErr) {
         console.error('Failed to connect to MongoDB Atlas:', atlasErr);
@@ -16,7 +16,7 @@ const connectToMongoDB = async () => {
         try {
             await mongoose.connect(process.env.MONGO_LOCAL, { useNewUrlParser: true, useUnifiedTopology: true })
             console.log('Local MongoDB connected');
-            importDataToMongoDB();
+            //importDataToMongoDB();
             deleteOldData();
         } catch (localErr) {
             console.error('Failed to connect to local MongoDB:', localErr);

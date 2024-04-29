@@ -23,13 +23,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
+    "start": "electron .",
     "dev": "nodemon backend/server.js",
     "build": "npm install"
   },
   "author": "Chester Evio",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "electron": "^30.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ischyros06/inventory-system.git"
