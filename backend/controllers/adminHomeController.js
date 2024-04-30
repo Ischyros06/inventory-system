@@ -33,12 +33,13 @@ const addQuantity = async (req, res) => {
         const { quantity, maxQuantity } = await itemCollection.findOne({ product: selectedProduct });
 
         if (quantity + quantityToAdd <= maxQuantity) { // Check if adding the quantity exceeds the maximum quantity
+            const currentDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' });
             // Check if there's an existing log entry within the last 5 seconds with the same userName and product
             const existingLog = await changeLog.findOne({
                 userName: adminName,
                 product: selectedProduct,
                 action: 'added',
-                createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
+                createdAt: { $gte: new Date(new Date(currentDate) - 5 * 1000) } // Check if createdAt is within the last 5 seconds
             });
 
             if (existingLog) {
@@ -52,7 +53,7 @@ const addQuantity = async (req, res) => {
                     action: 'added',
                     product: selectedProduct,
                     count: quantityToAdd, // Increment count by the input quantity
-                    createdAt: new Date().toISOString() // Set the current date
+                    createdAt: new Date(currentDate) // Set the current date
                 });
             }
 
