@@ -46,7 +46,7 @@ const editSubtractedQuantity = async (req, res) => {
                 userName,
                 product: productName,
                 action: 'undid',
-                createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
+                createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
             });
 
             if (existingLog) {
@@ -60,7 +60,7 @@ const editSubtractedQuantity = async (req, res) => {
                     action: 'undid', // Set action to 'undid'
                     product: productName,
                     count: quantityValue, // Increment count by one
-                    createdAt: new Date().toISOString() // Set the current date
+                    createdAt: new Date() // Set the current date
                 });
             }
 
@@ -112,7 +112,7 @@ const sendReport = async (req, res) => {
         const existingLog = await changeLog.findOne({
             userName,
             action: 'sent',
-            createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
+            createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
         });
 
         if (existingLog) {
@@ -124,7 +124,7 @@ const sendReport = async (req, res) => {
                 userName,
                 role: 'user', // Set role to 'user'
                 action: 'sent',
-                createdAt: new Date().toISOString() // Set the current date
+                createdAt: new Date() // Set the current date
             });
         }
 

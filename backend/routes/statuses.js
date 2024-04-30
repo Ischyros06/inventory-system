@@ -112,7 +112,7 @@ router.post('/submitEdit/:id', adminAuth, async (req, res) => {
                 userName: req.body.userName,
                 product: req.body.product,
                 action: 'edited',
-                createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
+                createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
             });
 
             if (existingLog) {
@@ -126,7 +126,7 @@ router.post('/submitEdit/:id', adminAuth, async (req, res) => {
                     action: 'edited',
                     product: req.body.product,
                     maxLimit: req.body.maxQuantity, // Store maxQuantity in maxLimit
-                    createdAt: new Date().toISOString() // Set the current date
+                    createdAt: new Date() // Set the current date
                 });
             }
             // If successful, render the success message
