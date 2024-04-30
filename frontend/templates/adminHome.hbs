@@ -76,7 +76,7 @@
                         <img class="productImage" src="${item.picture}" alt="${item.product}">
                         <span class="itemName">${item.product}</span>
                         <span class="itemQuantity">${item.quantity}/${item.maxQuantity}</span>
-                        <span class="itemUnit">${this.unit}</span>
+                        <span class="itemUnit">${item.unit}</span>
                         <input type="number" id="quantityInput" placeholder="Enter quantity" class="quantity-input" data-unit="${item.unit}" min="1">
                         <button type="button" class="add-quantity" data-product="${item.product}">&plus;</button>
                     `;
