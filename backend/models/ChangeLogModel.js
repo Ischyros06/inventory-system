@@ -34,7 +34,10 @@ const changeLogSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: function() {
+            const asiaManilaDate = new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+            return new Date(asiaManilaDate);
+        }
     }
 });
 
