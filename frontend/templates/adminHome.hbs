@@ -44,6 +44,7 @@
                     <img class="productImage" src="{{this.picture}}" alt="{{this.product}}">
                     <span class="itemName">{{this.product}}</span>
                     <span class="itemQuantity">{{this.quantity}}/{{this.maxQuantity}}</span>
+                    <span class="itemUnit">{{this.unit}}</span>
                     <input type="number" id="quantityInput" placeholder="Enter quantity" class="quantity-input" data-unit="{{this.unit}}" min="1">
                     <button type="button" id="addQuantity" class="add-quantity" data-product="{{this.product}}">&plus;</button>
                     <!-- &plus; is as HTML entity for 'plus sign'-->
@@ -75,6 +76,7 @@
                         <img class="productImage" src="${item.picture}" alt="${item.product}">
                         <span class="itemName">${item.product}</span>
                         <span class="itemQuantity">${item.quantity}/${item.maxQuantity}</span>
+                        <span class="itemUnit">${item.unit}</span>
                         <input type="number" id="quantityInput" placeholder="Enter quantity" class="quantity-input" data-unit="${item.unit}" min="1">
                         <button type="button" class="add-quantity" data-product="${item.product}">&plus;</button>
                     `;

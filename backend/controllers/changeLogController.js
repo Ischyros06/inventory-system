@@ -11,15 +11,4 @@ const renderChangeLog = async (req, res) => {
     }
 }
 
-const renderChangeLogUser = async (req, res) => {
-    try {
-        const logs = await changeLog.find().sort({ createdAt: -1 });
-
-        res.render("changeLogsUser", { changeLogs: logs });
-    } catch (error) {
-        console.error("Error fetching items:", error);
-        res.status(500).send("Internal Server Error");
-    }
-}
-
-module.exports = { renderChangeLog, renderChangeLogUser };
+module.exports = { renderChangeLog };

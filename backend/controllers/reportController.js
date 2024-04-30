@@ -15,6 +15,21 @@ const renderReportPage = async (req, res) => {
     }
 };
 
+const renderReportPageUser = async (req, res) => {
+    try {
+        const reports = await submittedReports.find().sort({ createdAt: -1 });
+        //Format the createdAt date in each report
+        const formattedReports = reports.map(report => ({
+            ...report.toObject(), //Convert Mongoose document to plain JavaScript object
+            createdAt: report.createdAt.toLocaleString() //Format createdAt date
+        }));
+        res.render('reportUser', { reportData: formattedReports });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send({ message: error.message });
+    }
+};
+
 const getDownloadTemp = async (req, res) => {
     try {
         // Fetch the report data from the database
@@ -53,4 +68,4 @@ const getDownloadTemp = async (req, res) => {
     }
 };
 
-module.exports = { renderReportPage , getDownloadTemp };
+module.exports = { renderReportPage, renderReportPageUser, getDownloadTemp };

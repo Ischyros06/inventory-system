@@ -21,10 +21,19 @@
     
     <main>
         <h1>Item Data Table</h1>
-        <button onclick="window.location.href='/status/createItem'">Create</button>
-        <button onclick="openConfirmationModal()">Backup data</button>
-        <button onclick="openImportConfirmationModal()">Import Data</button>
-        <p>Item Count: {{itemCount}}</p>
+
+        <div class="header">
+            <div>
+                <button onclick="window.location.href='/status/createItem'">Create</button>
+                <!--button onclick="openConfirmationModal()">Backup data</button>
+                <button onclick="openImportConfirmationModal()">Import Data</button-->
+                <p>Item Count: {{itemCount}}</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by product...">
+                <button onclick="search()">Search</button>
+            </div>
+        </div>
 
         <!-- Modal for data backup -->
         <div id="confirmationModal" class="modal">
@@ -108,6 +117,24 @@
     </main>
     
     <script>
+        function search() {
+            // Get the value entered in the search input
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+
+            // Get all table rows
+            const rows = document.querySelectorAll('tbody tr');
+
+            // Loop through each row and hide those that don't match the search term
+            rows.forEach(row => {
+                const product = row.querySelector('td:first-child').textContent.trim().toLowerCase();
+                if (product.includes(searchTerm)) {
+                    row.style.display = ''; // Show row
+                } else {
+                    row.style.display = 'none'; // Hide row
+                }
+            });
+        }
+
         // Function to open the confirmation modal
         function openConfirmationModal() {
             const modal = document.getElementById('confirmationModal');
