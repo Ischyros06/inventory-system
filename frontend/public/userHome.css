@@ -128,6 +128,14 @@ button:hover {
     text-align: center; /* Center align the quantity/maxQuantity */
 }
 
+.itemUnit {
+    display: block; /* Display each item quantity on a new line */
+    font-size: 20px; /* Adjust font size for quantity */
+    color: #666; /* Adjust color for quantity */
+    margin-top: -5px; /* Adjust spacing from item name */
+    text-align: center; /* Center align the quantity/maxQuantity */
+}
+
 .subtract-quantity {
     position: absolute;
     top: 85%;
