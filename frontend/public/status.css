@@ -184,3 +184,40 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Add this CSS to style the search input and button */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    margin: 0; /* Reset margin */
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    vertical-align: middle; /* Align vertically with other elements */
+}
+
+/* Reset default margin and padding for the search button */
+.search-bar button {
+    margin: 0; /* Reset margin */
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle; /* Align vertically with other elements */
+}
+.search-bar button:hover {
+    background-color: #45a049;
+}
+
+/* Add this CSS to position the search bar to the right and align it with other elements */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
