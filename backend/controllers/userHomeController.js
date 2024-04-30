@@ -40,7 +40,7 @@ const subtractQuantity = async (req, res) => {
                 userName: userName,
                 product: selectedProduct,
                 action: 'deducted',
-                createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
+                createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
             });
 
             if (existingLog) {
@@ -54,7 +54,7 @@ const subtractQuantity = async (req, res) => {
                     action: 'deducted', // Set action to 'subtracted'
                     product: selectedProduct,
                     count: quantityToDeduct, // Increment count by one
-                    createdAt: new Date() // Set the current date
+                    createdAt: new Date().toISOString() // Set the current date
                 });
             }
 

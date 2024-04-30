@@ -38,7 +38,7 @@ const addQuantity = async (req, res) => {
                 userName: adminName,
                 product: selectedProduct,
                 action: 'added',
-                createdAt: { $gte: new Date(new Date() - 5 * 1000) } // Check if createdAt is within the last 5 seconds
+                createdAt: { $gte: new Date(new Date() - 5 * 1000).toISOString() } // Check if createdAt is within the last 5 seconds
             });
 
             if (existingLog) {
@@ -52,7 +52,7 @@ const addQuantity = async (req, res) => {
                     action: 'added',
                     product: selectedProduct,
                     count: quantityToAdd, // Increment count by the input quantity
-                    createdAt: new Date() // Set the current date
+                    createdAt: new Date().toISOString() // Set the current date
                 });
             }
 
