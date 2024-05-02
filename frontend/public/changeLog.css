@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
 /* Reset default margin and padding */
 * {
     margin: 0;
@@ -7,33 +9,75 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #4267B2;
+    background-color: #A27243;
     margin: 0;
     padding: 0;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 30px;
+/* Navbar styles */
+header {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    background-color: #DAC0A7;
     color: #000000;
-    padding: 5px;
-    background-color: #E7EFFF;
-    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.brand a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-menu li {
     display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.navbar-menu li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: #4C43A2;
 }
 
 /* Aside styles */
 aside {
-    background-color: #333;
+    background-color: #DAC0A7;
+    border-radius: 10px;
     color: #fff;
     width: 220px; /* Adjust width as needed */
-    height: 100vh;
+    height: 92vh;
     position: fixed;
     top: 0;
     left: 0;
     overflow-y: auto; /* Add scroll if content exceeds height */
-    padding-top: 60px; /* Adjust padding for space above the content */
+    padding-top: 50px; /* Adjust padding for space above the content */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    margin-left: 0.3%;
+    margin-top: 3.6%;
 }
 
 aside ul {
@@ -44,16 +88,17 @@ aside ul {
 aside ul li {
     margin-bottom: 15px;
     transition: all 0.3s ease; /* Smooth transition for hover effect */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
-aside ul li:first-child {
-    font-weight: bold;
-    margin-left: 10px;
-    margin-bottom: 30px; /* Increase space above the first item */
+aside ul li img {
+    margin-left: 17%;
+    margin-bottom: 10px;
 }
 
 aside ul li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
     display: block;
     padding: 10px 20px; /* Add padding for better clickability */
@@ -61,8 +106,8 @@ aside ul li a {
 }
 
 aside ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Highlight on hover */
-    border-left-color: #4caf50; /* Highlight border on hover */
+    background-color: rgba( 162, 114, 67, 0.5); /* Highlight on hover */
+    border-left-color: #43A298; /* Highlight border on hover */
 }
 
 main {
@@ -72,30 +117,25 @@ main {
 
 /* Main tag styles */
 main {
-    margin-left: 220px; /* Adjust according to aside width */
+    margin-left: 260px; /* Adjust according to aside width */
     padding: 20px;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 30px;
-    color: #000000;
-    padding: 5px;
-    background-color: #E7EFFF;
-    border-radius: 50px;
-    display: inline-block;
-}
-
 .log-container {
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 50px;
 }
 
 .log-item {
     background-color: #ffffff;
-    padding: 10px;
+    padding: 20px;
+    margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    font-size: x-large;
 }
 
 .log-item p {

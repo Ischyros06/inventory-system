@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #A27243;
     margin: 0;
     padding: 0;
     display: flex;
@@ -28,6 +28,7 @@ body {
 
 .back-button {
     position: absolute;
+    background-color: #fff;
     top: 15px;
     left: 15px;
     color: #333;
@@ -73,7 +74,7 @@ input {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #43A298;
     color: #fff;
     padding: 10px;
     border: none;
@@ -84,7 +85,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #307c75;
 }
 
 /* Add styles for select and option elements */
@@ -105,7 +106,7 @@ select {
 
 select:focus {
     outline: none; /* Remove focus outline */
-    border-color: #4caf50; /* Change border color on focus */
+    border-color: #43A298; /* Change border color on focus */
 }
 
 /* Style options */

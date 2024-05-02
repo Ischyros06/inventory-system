@@ -5,23 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Report</title>
     <link rel="stylesheet" href="/dailyReport.css">
-    <!--link rel="stylesheet" href="print-styles.css" media="print"-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="/goHomeAdmin" style="font-family: 'Roboto', sans-serif;">Stack Inventory - USER : Daily Report</a>
+            </div>
+            <ul class="navbar-menu">
+                <li>Welcome, <strong style="color: #4C43A2;">{{user.name}}</strong></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <aside>
         <ul>
-            <li class="greeting">Welcome, {{user.name}}</li>
+            <li><img src="Casanas Suites.png" alt="Casanas Suites Logo"></li>
             <li><a href="/goHomeUser">Home</a></li>
             <li><a href="/dailyReport">Daily Report Tab</a></li>
-            <li><a href="/reportView/user">Report Submitted</a></li>
+            <li><a href="/reportView">Report Submitted</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </aside>
 
     <main>
-        <h1>Daily Report</h1>
-        <br>
-        <!-- Message about data deletion at midnight -->
+        <div class="container">
+            <!-- Message about data deletion at midnight -->
         <div class="message">
             Note: Data will be automatically deleted at midnight.
             <!-- Countdown timer -->
@@ -71,7 +83,8 @@
                 {{/each}}
             </tbody>
         </table>
-        <p>Used by {{user.name}}</p>
+        <p class="name-tag">Used by {{user.name}}</p>
+        </div>
     </main>
 
     <script>

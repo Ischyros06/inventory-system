@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Home</title>
     <link rel="stylesheet" href="/adminHome.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="/goHomeAdmin" style="font-family: 'Roboto', sans-serif;">Stack Inventory - ADMIN : Home</a>
+            </div>
+            <ul class="navbar-menu">
+                <li>Welcome, <strong style="color: #4C43A2;">{{admin.name}}</strong></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <aside>
         <ul>
-            <li class="greeting">Welcome, {{admin.name}}</li>
+            <li><img src="Casanas Suites.png" alt="Casanas Suites Logo"></li>
             <li class="dropdown-toggle">
                 <a href="/goHomeAdmin">Home</a>
                 <!-- Arrow icon for dropdown -->
@@ -34,9 +48,6 @@
     </aside>
 
     <div class="controlPanel">
-        <h1>Welcome to Stack Inventory - Admin Side</h1>
-
-        <label for="items">Select an item to in:</label>
         <ul name="items" id="items" class="items">
             <div class="item-container" >
                 {{#each itemCollection}}
@@ -53,7 +64,6 @@
             </div>
         </ul>
     </div>
-    
 
     
     <script>

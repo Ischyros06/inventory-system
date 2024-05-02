@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #4267B2;
+    background-color: #A27243;
     margin: 0;
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@ h1 {
 
 /* Button Styles */
 .btn {
-    background-color: #4caf50;
+    background-color: #67ada6;
     color: #fff;
     padding: 15px 30px;
     border: none;
@@ -65,7 +65,7 @@ h1 {
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: #43A298;
 }
 
 .btn + .btn {
@@ -82,7 +82,7 @@ h1 {
 
 /* Footer Styles */
 footer {
-    background-color: #4267B2;
+    background-color: #A27243;
     color: white;
     padding: 20px;
     text-align: center;

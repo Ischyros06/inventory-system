@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Home</title>
     <link rel="stylesheet" href="/userHome.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="/goHomeAdmin" style="font-family: 'Roboto', sans-serif;">Stack Inventory - USER : Home</a>
+            </div>
+            <ul class="navbar-menu">
+                <li>Welcome, <strong style="color: #4C43A2;">{{user.name}}</strong></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <aside>
         <ul>
-            <li class="greeting">Welcome, {{user.name}}</li>
+            <li><img src="Casanas Suites.png" alt="Casanas Suites Logo"></li>
             <li class="dropdown-toggle">
                 <a href="/goHomeUser">Home</a>
                 <!-- Arrow icon for dropdown -->
@@ -26,15 +40,12 @@
                 </ul>
             </li>
             <li><a href="/dailyReport">Daily Report Tab</a></li>
-            <li><a href="/reportView/user">Report Submitted</a></li>
+            <li><a href="/reportView">Report Submitted</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </aside>
 
     <div class="controlPanel">
-        <h1>Welcome to Stack Inventory - User Side</h1>
-
-        <label for="items">Select an item to out:</label>
         <ul name="items" id="items" class="items">
             <div class="item-container" >
                 {{#each itemCollection}}

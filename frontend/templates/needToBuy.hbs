@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Need to Buy</title>
     <link rel="stylesheet" href="/needToBuy.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="/goHomeAdmin" style="font-family: 'Roboto', sans-serif;">Stack Inventory - ADMIN : Need to Buy</a>
+            </div>
+            <ul class="navbar-menu">
+                <li>Welcome, <strong style="color: #4C43A2;">{{admin.name}}</strong></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <aside>
         <ul>
-            <li>Welcome, {{admin.name}}</li>
+            <li><img src="Casanas Suites.png" alt="Casanas Suites Logo"></li>
             <li><a href="/goHomeAdmin">Home</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/report">Reports</a></li>
@@ -20,29 +34,29 @@
     </aside>
 
     <main>
-        <h1> Need to Buy</h1>
-        <br>
-        <button onclick="window.print()">Print Report</button>
+        <div class="item-container">
+            <button onclick="window.print()">Print Report</button>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Unit</th>
-                    <th>Quantity Needed</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {{#each reportData}}
+            <table>
+                <thead>
                     <tr>
-                        <td>{{this.product}}</td>
-                        <td>{{this.unit}}</td>
-                        <td>{{this.difference}}</td>
+                        <th>Product</th>
+                        <th>Unit</th>
+                        <th>Quantity Needed</th>
                     </tr>
-                {{/each}}
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    {{#each reportData}}
+                        <tr>
+                            <td>{{this.product}}</td>
+                            <td>{{this.unit}}</td>
+                            <td>{{this.difference}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 </html>

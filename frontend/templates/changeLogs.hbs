@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Logs</title>
     <link rel="stylesheet" href="/changeLog.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="brand">
+                <a href="/goHomeAdmin" style="font-family: 'Roboto', sans-serif;">Stack Inventory - ADMIN : Change Logs</a>
+            </div>
+            <ul class="navbar-menu">
+                <li>Welcome, <strong style="color: #4C43A2;">{{admin.name}}</strong></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <aside>
         <ul>
-            <li>Welcome, {{admin.name}}</li>
+            <li><img src="Casanas Suites.png" alt="Casanas Suites Logo"></li>
             <li><a href="/goHomeAdmin">Home</a></li>
             <li><a href="/status">Status</a></li>
             <li><a href="/report">Reports</a></li>
@@ -20,7 +34,6 @@
     </aside>
 
     <main>
-        <h1>Change Logs</h1>
         <div class="log-container">
             {{#each changeLogs}}
                 <div class="log-item">

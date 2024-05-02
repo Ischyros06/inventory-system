@@ -1,6 +1,6 @@
 const { submittedReports } = require('../models/SubmittedReportsModel');
 
-const renderReportPage = async (req, res) => {
+const renderReportPageUser = async (req, res) => {
     try {
         const reports = await submittedReports.find().sort({ createdAt: -1 });
         // Format the createdAt date in each report
@@ -18,12 +18,13 @@ const renderReportPage = async (req, res) => {
             });
             return { ...report.toObject(), createdAt: formattedDate };
         });
-        res.render('report', { reportData: formattedReports });
+        res.render('reportUser', { reportData: formattedReports });
     } catch (error) {
         console.error(error.message);
         res.status(500).send({ message: error.message });
     }
 };
+
 
 const getDownloadTemp = async (req, res) => {
     try {
@@ -63,4 +64,4 @@ const getDownloadTemp = async (req, res) => {
     }
 };
 
-module.exports = { renderReportPage, getDownloadTemp };
+module.exports = { renderReportPageUser, getDownloadTemp };

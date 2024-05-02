@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #4267B2;
+    background-color: #A27243;
     margin: 0;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@ input {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #67ada6;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -59,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #43A298;
 }
 
 .error, .errorPass, .errorName {
@@ -73,7 +73,7 @@ a {
     display: block;
     text-align: center;
     margin-top: 20px;
-    color: #4caf50;
+    color: #43A298;
     text-decoration: none;
     font-size: 14px;
 }
