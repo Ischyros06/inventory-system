@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <link rel="stylesheet" href="/login.css">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="/resetPass.css">
 </head>
 <body>
+    <!-- Back button -->
+    <a href="/home" class="back-button">&lt; Cancel</a>
+
     <form>
         <div class="logo">
             <img src="/Casanas Suites.png" alt="Casanas Suites Logo">
         </div>
 
-        <h2>Login</h2>
+        <h2>Reset Password</h2>
         <label for="name">Username</label>
-        <input type="text" id="name" name="name" required>
-        <div class="errorName"></div>
+        <!-- Use JavaScript to extract the value from the query string -->
+        <input type="text" id="name" name="name" value="" readonly>
         <label for="password">Password</label>
         <div class="password-wrapper">
                 <input type="password" id="password" name="password" required>
                 <button type="button" id="showPasswordButton" class="passwordBtn">Show</button>
         </div>
-        <div class="errorPass"></div>
-        <button>Log in</button>
-        <a href="/chooseRole">Make new account</a>
-        <a href="/authenticateAcc">Forgot password?</a>
+        <div class="details"></div>
+        <button>Reset Password</button>
     </form>
 
     <script>
@@ -37,33 +38,46 @@
                 showPasswordButton.textContent = 'Hide';
                 // Increase input width to accommodate the button
                 passwordInput.style.width = '280px';
-                passwordInput.style.marginLeft = "10px"
+                passwordInput.style.marginLeft = '9px';
             } else {
                 passwordInput.type = 'password';
                 showPasswordButton.textContent = 'Show';
                 // Restore original input width
                 passwordInput.style.width = ''; // Reset width to auto
-                passwordInput.style.marginLeft = "-3px"
+                passwordInput.style.marginLeft = '-5px';
             }
         });
 
         const form = document.querySelector('form');
-        const errorName = document.querySelector('.errorName');
-        const errorPass = document.querySelector('.errorPass');
+        const details = document.querySelector('.details');
+
+        // Function to extract value from query string
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get the account name from the query string
+        var accountName = getParameterByName('account');
+        // Set the value of the input field
+        document.getElementById('name').value = accountName;
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-
-            errorName.textContent = ''; // Clear username error
-            errorPass.textContent = ''; // Clear password error
+            details.textContent = '';
 
             // get the values
             const name = form.name.value;
             const password = form.password.value;
             
             try {
-                const res = await fetch('/login', {
+                const res = await fetch('/resetPass', {
                     method: 'POST',
                     body: JSON.stringify({ name, password }),
                     headers: { 'Content-Type': 'application/json' }
@@ -71,24 +85,13 @@
 
                 const data = await res.json();
                 // Check for errors in the response
-                if (res.status === 400) {
-                    if (data.error === 'This username does not exist.') {
-                        errorName.textContent = data.error;
-                    } else {
-                        errorPass.textContent = data.error;
-                    }
-                } else if(data.error === "Your account is not approved yet. Please contact the master admin."){
-                    errorPass.textContent = data.error;
+                if (data.success) {
+                    details.textContent = 'The password change sucessfully';
                 } else {
-                    // Check the role and redirect accordingly
-                    if (data.role === "admin") {
-                        location.assign('/adminHome');
-                    } else {
-                        location.assign('/userHome');
-                    }
+                    details.textContent = 'Password change error:' + data.error;
                 }
             } catch (error){
-                console.error('Error logging in:', error);
+                console.error('Error authentication:', error);
             }
         });
     </script>

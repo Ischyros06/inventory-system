@@ -126,6 +126,8 @@ router.post('/submitEdit/:id', adminAuth, async (req, res) => {
                     action: 'edited',
                     product: req.body.product,
                     maxLimit: req.body.maxQuantity, // Store maxQuantity in maxLimit
+                    unit: req.body.unit,
+                    category: req.body.category,
                     createdAt: new Date() // Set the current date
                 });
             }

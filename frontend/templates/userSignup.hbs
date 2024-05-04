@@ -17,13 +17,41 @@
             <input type="text" id="name" name="name" required>
             <div class="errorName"></div>
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <div class="errorPass"></div>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" required>
+                <button type="button" id="showPasswordButton" class="passwordBtn">Show</button>
+            </div>
+            <div class="errorPass"></div> <br>
+            <p>This part is for authentication purposes.</p>
+            <p>(Please remember your answers!)</p> <br>
+            <label for="question1">Question 1: What is your mother's maiden name?</label>
+            <input type="text" id="question1" name="question1" required>
+            <label for="question2">Question 2: What city were you born in?</label>
+            <input type="text" id="question2" name="question2" required>
+            <label for="question3">Question 3: What is your favorite food?</label>
+            <input type="text" id="question3" name="question3" required>
             <button>Signup</button>
         </form>
     </div>
 
     <script>
+        const passwordInput = document.getElementById('password');
+        const showPasswordButton = document.getElementById('showPasswordButton');
+
+        showPasswordButton.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                showPasswordButton.textContent = 'Hide';
+                // Increase input width to accommodate the button
+                passwordInput.style.width = '400px';
+            } else {
+                passwordInput.type = 'password';
+                showPasswordButton.textContent = 'Show';
+                // Restore original input width
+                passwordInput.style.width = ''; // Reset width to auto
+            }
+        });
+
         const form = document.querySelector('form');
         const errorName = document.querySelector('.errorName');
         const errorPass = document.querySelector('.errorPass');
@@ -38,11 +66,14 @@
             // get the values
             const name = form.name.value;
             const password = form.password.value;
+            const question1 = form.question1.value;
+            const question2 = form.question2.value;
+            const question3 = form.question3.value;
             
             try {
                 const res = await fetch('/userSignup', {
                     method: 'POST',     
-                    body: JSON.stringify({ name, password }),
+                    body: JSON.stringify({ name, password, question1, question2, question3 }),
                     headers: { 'Content-Type': 'application/json' }
                 });
 

@@ -23,6 +23,18 @@ const AdminLoginSchema = new mongoose.Schema({
     isApproved:{  //This is for admin requests, the master admin should change the value into true
         type: Boolean,
         default: false
+    },
+    question1:{
+        type: String,
+        required: [true, 'Please answer']
+    },
+    question2:{
+        type: String,
+        required: [true, 'Please answer']
+    },
+    question3:{
+        type: String,
+        required: [true, 'Please answer']
     }
 },
 {

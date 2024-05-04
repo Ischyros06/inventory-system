@@ -62,7 +62,7 @@ button:hover {
     background-color: #43A298;
 }
 
-.error, .errorPass, .errorName {
+.error, .errorDetails, .errorName {
     color: red;
     margin-top: 5px;
     font-size: 14px;
@@ -80,25 +80,4 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-
-.password-wrapper {
-    position: relative;
-    width: fit-content;
-}
-
-.password-wrapper input[type="password"] {
-    padding-right: 220px; /* Adjust this value as needed */
-    box-sizing: border-box; /* Add this line to include padding in the element's total width */
-}
-
-.password-wrapper button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 50%;
-    padding: 5px 5px; /* Adjust padding as needed */
-    margin-top: 10px;
-    margin-right: 15px;
 }

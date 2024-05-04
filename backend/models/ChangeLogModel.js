@@ -32,6 +32,18 @@ const changeLogSchema = new mongoose.Schema({
             return this.action === 'created' || this.action === 'edited';
         }
     },
+    unit: {
+        type: String,
+        required: function() {
+            return this.action === 'created' || this.action === 'edited';
+        }
+    },
+    category: {
+        type: String,
+        required: function() {
+            return this.action === 'created' || this.action === 'edited';
+        }
+    },
     createdAt: {
         type: Date,
         default: Date.now

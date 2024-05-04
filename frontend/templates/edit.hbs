@@ -38,8 +38,54 @@
         
         <label for="maxQuantity">Maximum Quantity:</label>
         <input type="number" id="maxQuantity" name="maxQuantity" value="{{item.maxQuantity}}" required>
-        
+
+        <label for="unit">Unit of measurement:</label>
+        <select name="unit" id="unit" name="unit">
+            <option value="grams">Grams</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="pieces">Pieces</option>
+        </select>
+
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+            <option value="breakfast">Breakfast</option>
+            <option value="condiments">Condiments</option>
+            <option value="drinks">Drinks</option>
+            <option value="fruits">Fruits</option>
+            <option value="kitchen aid">Kitchen Aid</option>
+            <option value="resto">Resto</option>
+            <option value="vegetables">Vegetables</option>
+        </select>
+
         <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript code to set the selected attribute based on item.unit and item.category
+        document.addEventListener("DOMContentLoaded", function () {
+            const itemUnit = "{{item.unit}}";
+            const itemCategory = "{{item.category}}";
+
+            const unitSelect = document.getElementById("unit");
+            const categorySelect = document.getElementById("category");
+
+            // Set selected option for unit select element
+            for (let option of unitSelect.options) {
+                if (option.value === itemUnit) {
+                    option.selected = true;
+                    break;
+                }
+            }
+
+            // Set selected option for category select element
+            for (let option of categorySelect.options) {
+                if (option.value === itemCategory) {
+                    option.selected = true;
+                    break;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

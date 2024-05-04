@@ -88,6 +88,33 @@ button:hover {
     background-color: #307c75;
 }
 
+/* Add styles for select and option elements */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    appearance: none; /* Remove default appearance */
+    background-color: #fff; /* Set background color */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#555" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/></svg>'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+select:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #43A298; /* Change border color on focus */
+}
+
+/* Style options */
+option {
+    background-color: #fff; /* Set background color */
+    color: #333; /* Set text color */
+}
+
 /* Styling for read-only inputs */
 input[readonly] {
     background-color: #f4f4f4;

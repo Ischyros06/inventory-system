@@ -50,6 +50,11 @@ app.get("/chooseRole",(req, res)=> { res.render("chooseRole") });
 app.get("/adminSignup",(req, res)=> { res.render("adminSignup") });
 app.get("/userSignup",(req, res)=> { res.render("userSignup") });
 app.get("/login", (req, res) => { res.render("login") });
+app.get('/authenticateAcc', (req, res) => { res.render('authenticateAcc')});
+app.get('/resetPass', (req, res) => {
+    const accountName = req.query.account; // Assuming you're passing account data in the query string
+    res.render('resetPass', { accountName });
+});
 app.get('/goHomeAdmin', adminAuth, async(req, res)=>{ res.redirect('adminHome') });
 app.get('/goHomeUser', userAuth, async(req, res)=>{ res.redirect('userHome') });
 
@@ -65,6 +70,8 @@ const adminSignupRoutes = require('./routes/adminSignups');
 const userSignupRoutes = require('./routes/userSignups');
 const loginRoutes = require('./routes/logins');
 const changeLogRoutes = require('./routes/changeLogs');
+const authAccRoutes = require('./routes/authenticateAcc');
+const resetPassRoutes = require('./routes/resetPass');
 
 app.use('/adminHome', adminAuth, adminHomeRoutes);
 app.use('/userHome', userAuth, userHomeRoutes);
@@ -77,6 +84,8 @@ app.use('/dailyReport', userAuth, dailyReportRoutes);
 app.use('/adminSignup', adminSignupRoutes);
 app.use('/userSignup', userSignupRoutes);
 app.use('/login', loginRoutes);
+app.use('/authenticateAcc', authAccRoutes);
+app.use('/resetPass', resetPassRoutes);
 
 //electron test route
 
