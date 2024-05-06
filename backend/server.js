@@ -57,6 +57,10 @@ app.get('/resetPass', (req, res) => {
 });
 app.get('/goHomeAdmin', adminAuth, async(req, res)=>{ res.redirect('adminHome') });
 app.get('/goHomeUser', userAuth, async(req, res)=>{ res.redirect('userHome') });
+app.get('/aboutAdmin', adminAuth, async(req, res)=>{ res.render('aboutAdmin') });
+app.get('/aboutUser', userAuth, async(req, res)=>{ res.render('aboutUser') });
+app.get('/contactAdmin', adminAuth, async(req, res)=>{ res.render('contactAdmin')});
+app.get('/contactUser', userAuth, async(req, res)=>{ res.render('contactUser')});
 
 // Import and use routes
 const adminHomeRoutes = require('./routes/adminHomes');

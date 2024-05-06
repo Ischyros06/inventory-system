@@ -29,9 +29,6 @@
   },
   "author": "Chester Evio",
   "license": "ISC",
-  "devDependencies": {
-    "electron": "^30.0.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ischyros06/inventory-system.git"
