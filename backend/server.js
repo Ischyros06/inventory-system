@@ -98,7 +98,7 @@ app.use('/resetPass', resetPassRoutes);
 app.get('/getNearDepletionItems', async (req, res) => {
     try {
         // Fetch items from the database where the quantity is less than 5
-        const nearDepletionItems = await itemCollection.find({ quantity: { $lt: 5 } });
+        const nearDepletionItems = await itemCollection.find({ quantity: { $lt: 3 } });
 
          // Send SMS notification if there are items near depletion
         if (nearDepletionItems.length > 0) {
