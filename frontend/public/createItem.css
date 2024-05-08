@@ -12,7 +12,7 @@ body {
 
 .error-message,
 .success-message {
-    width: 100%;
+    width: 15%;
     text-align: center;
     margin-bottom: 10px; /* Added */
     font-weight: bold;
