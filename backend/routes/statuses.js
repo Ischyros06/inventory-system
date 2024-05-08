@@ -62,6 +62,8 @@ router.post('/submitItem', upload.single('picture'), adminAuth, async (req, res)
                 action: 'created',
                 product: req.body.product,
                 maxLimit: req.body.maxQuantity, // Store maxQuantity in maxLimit
+                unit: req.body.unit,
+                category: req.body.category,
                 createdAt: new Date() // Set the current date
             });
         }

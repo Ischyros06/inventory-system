@@ -91,14 +91,20 @@ app.use('/login', loginRoutes);
 app.use('/authenticateAcc', authAccRoutes);
 app.use('/resetPass', resetPassRoutes);
 
-//electron test route
-
-
 // Route to get near-depletion items inside the frontend
 app.get('/getNearDepletionItems', async (req, res) => {
     try {
-        // Fetch items from the database where the quantity is less than 5
-        const nearDepletionItems = await itemCollection.find({ quantity: { $lt: 3 } });
+        // Fetch items from the database based on unit and quantity criteria
+        const nearDepletionItems = await itemCollection.find({
+            $or: [
+                // Items with unit 'pieces' and quantity less than 3
+                { unit: 'pieces', quantity: { $lt: 3 } },
+                // Items with unit 'milliliters' and quantity less than 250
+                { unit: 'milliliters', quantity: { $lt: 250 } },
+                // Items with unit 'grams' and quantity less than 250
+                { unit: 'grams', quantity: { $lt: 250 } }
+            ]
+        });
 
          // Send SMS notification if there are items near depletion
         if (nearDepletionItems.length > 0) {
@@ -142,7 +148,7 @@ function using twilio.api for sms notification
 */
 function sendTextMessage(nearDepletionItems){
     // Extract the product names from near-depletion items
-    const productNotif = nearDepletionItems.map(item => `${item.product}: ${item.quantity}/${item.maxQuantity}`).join(',\n');
+    const productNotif = nearDepletionItems.map(item => `${item.product}: ${item.quantity}/${item.maxQuantity} ${item.unit}`).join(',\n');
 
     const messageBody = `Items near depletion: \n ${productNotif}`;
 

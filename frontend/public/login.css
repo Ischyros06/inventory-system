@@ -62,6 +62,24 @@ button:hover {
     background-color: #43A298;
 }
 
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 7px 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
 .error, .errorPass, .errorName {
     color: red;
     margin-top: 5px;

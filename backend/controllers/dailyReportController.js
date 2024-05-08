@@ -130,10 +130,12 @@ const sendReport = async (req, res) => {
 
         await reportCollection.deleteOne({ userId: userId });
 
-        res.status(200).send('Report sent successfully');
+        // Send success response with status code 200 and success message
+        res.status(200).json({ success: true, message: 'Report sent successfully' });
     } catch (error) {
         console.error(`Error sending report: ${error}`);
-        res.status(500).send('An error occurred while sending report');
+        // Send error response with status code 500 and error message
+        res.status(500).json({ success: false, message: 'An error occurred while sending report' });
     }
 };
 

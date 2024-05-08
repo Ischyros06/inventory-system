@@ -169,12 +169,17 @@
                     reportData: reportData
                     })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to send report');
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    alert('Report sent successfully');
+                    // Reload the page after successfully sending the report
+                    window.location.reload();
+                } else {
+                    // Show error message
+                    alert('Error: ' + data.message);
                 }
-                // Reload the page after successfully sending the report
-                window.location.reload();
             })
             .catch(error => {
                 console.error('Error sending report:', error);
