@@ -150,6 +150,7 @@ main {
 
 .container {
     margin-top: 60px;
+    position: relative;
 }
 
 /* Styles for the table */
@@ -199,20 +200,21 @@ tr:nth-child(even) {
 
 /* CSS for the message */
 .message {
-    display: inline;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     color: #f20000;
-    font-size: 14px;
     border-radius: 5px;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 .countdown {
-    display: inline;
-    margin: 10px;
-    font-size: 16px;
+    font-size: x-large;
 }
 
 p {
@@ -316,5 +318,12 @@ p {
         margin-left: auto; /* Set margin-left to auto to center the contents */
         margin-right: auto; /* Set margin-right to auto to center the contents */
         width: 80%; /* Adjust width if needed */
+    }
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .message {
+        padding: 8px;
     }
 }
