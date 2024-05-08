@@ -34,6 +34,13 @@
     </aside>
 
     <main>
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by user or date...">
+                <button onclick="search()">Search</button>
+            </div>
+        </div>
+
         <div class="report-container">
             {{#each reportData}}
                 <div class="report-block">
@@ -78,6 +85,26 @@
     </div>
 
     <script>
+        function search() {
+        // Get the search input value
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+        // Loop through each report block
+        const reportBlocks = document.querySelectorAll('.report-block');
+        reportBlocks.forEach(reportBlock => {
+            // Get the userName and createdAt values
+            const userName = reportBlock.querySelector('.account').innerText.toLowerCase();
+            const createdAt = reportBlock.querySelector('.date').innerText.toLowerCase();
+
+            // Check if the userName or createdAt matches the search input
+            if (userName.includes(searchInput) || createdAt.includes(searchInput)) {
+                reportBlock.style.display = 'block'; // Show the report block
+            } else {
+                reportBlock.style.display = 'none'; // Hide the report block
+            }
+        });
+    }
+
         // Get the modal
         var modal = document.getElementById('reportModal');
 

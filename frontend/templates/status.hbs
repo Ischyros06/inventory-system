@@ -42,7 +42,7 @@
                 <p>Item Count: {{itemCount}}</p>
             </div>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search by product...">
+                <input type="text" id="searchInput" placeholder="Search anything related...">
                 <button onclick="search()">Search</button>
             </div>
         </div>
@@ -137,10 +137,23 @@
             // Get all table rows
             const rows = document.querySelectorAll('tbody tr');
 
-            // Loop through each row and hide those that don't match the search term
+            // Loop through each row
             rows.forEach(row => {
-                const product = row.querySelector('td:first-child').textContent.trim().toLowerCase();
-                if (product.includes(searchTerm)) {
+                // Initialize a variable to track whether the search term was found in any column
+                let found = false;
+
+                // Loop through each cell in the row
+                const cells = row.querySelectorAll('td');
+                cells.forEach(cell => {
+                    const text = cell.textContent.trim().toLowerCase();
+                    // Check if the search term is found in any cell
+                    if (text.includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+
+                // Show or hide the row based on whether the search term was found
+                if (found) {
                     row.style.display = ''; // Show row
                 } else {
                     row.style.display = 'none'; // Hide row

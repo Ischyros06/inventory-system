@@ -34,6 +34,13 @@
     </aside>
 
     <main>
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search anything related...">
+                <button onclick="search()">Search</button>
+            </div>
+        </div>
+
         <div class="log-container">
             {{#each changeLogs}}
                 <div class="log-item">
@@ -59,5 +66,26 @@
             {{/each}}
         </div>
     </main>
+
+    <script>
+        function search() {
+            // Get the search input value
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+            // Loop through each log item
+            const logItems = document.querySelectorAll('.log-item');
+            logItems.forEach(logItem => {
+                // Get the text content of the log item
+                const logText = logItem.innerText.toLowerCase();
+
+                // Check if the log item contains the search input
+                if (logText.includes(searchInput)) {
+                    logItem.style.display = 'block'; // Show the log item
+                } else {
+                    logItem.style.display = 'none'; // Hide the log item
+                }
+            });
+        }
+    </script>
 </body>
 </html>
