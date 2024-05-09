@@ -29,6 +29,8 @@
         <!-- Hidden input to send the HTTP method -->
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="userName" value="{{admin.name}}">
+        <!-- Hidden input to store the current picture value -->
+        <input type="hidden" id="currentPicture" name="currentPicture" value="{{item.picture}}">
         
         <label for="product">Product:</label>
         <input type="text" id="product" name="product" value="{{item.product}}" required readonly> <!--this is only set as read only meaning it cant be edited-->
@@ -85,6 +87,15 @@
                 }
             }
         });
+
+        // Get the current picture value
+        const currentPicture = document.getElementById('currentPicture').value;
+        // Get the picture input field
+        const pictureInput = document.getElementById('pictureInput');
+        // If there's already a current picture, disable the picture input field
+        if (currentPicture !== "") {
+            pictureInput.disabled = true;
+        } 
     </script>
 </body>
 

@@ -29,8 +29,11 @@ router.get('/createItem', adminAuth, async(req, res) => {
 //Route for submitting the created item
 router.post('/submitItem', upload.single('picture'), adminAuth, async (req, res) => {
     try {
-        if (!req.body.product || !req.body.quantity || !req.body.maxQuantity || !req.body.unit) {
-            const errorMessage = encodeURIComponent('Send all required fields: product, quantity, max quantity, unit');
+        if (!req.body.product || !req.body.quantity || !req.body.maxQuantity || !req.body.unit || !req.file) {
+            const errorMessage = encodeURIComponent('Send all required fields: product, quantity, max quantity, unit, picture');
+            return res.redirect(`/status/createItem/?errorMessage=${errorMessage}`);
+        }if(req.body.maxQuantity < req.body.quantity){
+            const errorMessage = encodeURIComponent('Input denied: Maximum quantity cannot be lower than the current quantity!');
             return res.redirect(`/status/createItem/?errorMessage=${errorMessage}`);
         }
 
@@ -99,7 +102,10 @@ router.post('/submitEdit/:id', adminAuth, async (req, res) => {
     try {
         const { id } = req.params;
         if (!req.body.maxQuantity || req.body.maxQuantity == 0) {
-            const errorMessage = encodeURIComponent('Send all required fields: Maximum Quantity (Cannot be zero!)');
+            const errorMessage = encodeURIComponent('Input denied: Maximum quantity (Cannot be zero!)');
+            return res.redirect(`/status/edit/${id}?errorMessage=${errorMessage}`);
+        } if(req.body.maxQuantity < req.body.quantity){
+            const errorMessage = encodeURIComponent('Input denied: Maximum quantity cannot be lower than the current quantity!');
             return res.redirect(`/status/edit/${id}?errorMessage=${errorMessage}`);
         }
         
