@@ -69,13 +69,14 @@ const editSubtractedQuantity = async (req, res) => {
                 {$inc: {quantity: quantityValue}} 
             )
 
-            res.status(200).send('Quantity subtracted successfully');
+            // Ensure that you send a JSON response
+            res.status(200).json({ success: true, message: 'Quantity subtracted successfully' });
         } else {
-            res.status(404).send('Product not found in report');
+            res.status(404).json({ success: false, message: 'Product not found in report' });
         }
     } catch (error) {
         console.error(`Error subtracting quantity: ${error}`);
-        res.status(500).send('An error occurred while subtracting quantity');
+        res.status(500).json({ success: false, message: 'An error occurred while subtracting quantity' });
     }
 };
 

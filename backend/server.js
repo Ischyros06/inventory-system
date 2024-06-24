@@ -9,7 +9,6 @@ const cookieParser = require("cookie-parser"); //package for making a cookie
 const fs = require('fs'); //required for data backup
 const open = require('opn');
 
-
 // Import environment variables
 const env = require('dotenv').config({path: path.resolve(__dirname, './.env')});
 
